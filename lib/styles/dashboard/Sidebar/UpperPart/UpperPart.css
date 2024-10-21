@@ -1,0 +1,186 @@
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    @layer base {
+        /* Theming variables */
+        :root {
+            /* Light Theme Variables */
+            --Theme-Upperpart-Background: #FFFFFF; /* Upper part background */
+            --Theme-Upperpart-Title-Text: #262626; /* Upper part title text color */
+            --Theme-Upperpart-Plan-Text: #6B7280;; /* Upper part plan text color */
+            
+            --Theme-user-avatar-border: #191919;
+            
+            --Theme-Accordion-Title-Text: #8d8d8d; /* Accordion title text color */
+            --Theme-Accordion-Icon-Color:  var(--Theme-Upperpart-Plan-Text); /* Accordion icon color */
+            --Theme-Accordion-Content-Text: var(--Theme-Upperpart-Plan-Text); /* Accordion content text color */
+            --Theme-FavoriteIcon-Stroke-Fill: var(--Theme-Accordion-Content-Text);
+            --Theme-FavoriteIcon-Selected-Fill:  #ffbb00;
+          
+
+            --Theme-Item-bg-Hover: rgba(224, 224, 224, 0.5);
+            --Theme-Accordion-Header-Hover: #4f4f4f;           
+            --Theme-MoreIcon-bg-Hover: rgba(198, 198, 198, 0.5);
+            --Theme-Accordion-Content-Text-Hover: var(--Theme-Upperpart-Title-Text);
+
+        }
+
+        .dark {
+            /* Dark Theme Variables */
+            --Theme-Upperpart-Background: #191919; /* Upper part background */
+            --Theme-Upperpart-Title-Text: #D1D5DB; /* Upper part title text color */
+            --Theme-Upperpart-Plan-Text: #9CA3AF; /* Upper part plan text color */
+            
+            --Theme-user-avatar-border: #3e3e3e;
+            
+            --Theme-Accordion-Title-Text: #D1D5DB; /* Accordion title text color */
+            --Theme-Accordion-Icon-Color:var(--Theme-Upperpart-Plan-Text); /* Accordion icon color */
+            --Theme-Accordion-Content-Text: var(--Theme-Upperpart-Plan-Text); /* Accordion content text color */
+            --Theme-FavoriteIcon-Stroke-Fill: var(--Theme-Accordion-Content-Text);
+            --Theme-FavoriteIcon-Selected-Fill: #FFBB00;
+           
+
+            --Theme-Item-bg-Hover: rgba(255, 255, 255, 0.2);
+            --Theme-Accordion-Header-Hover: #dbdbdb;  /* Accent color for hover effects (dark theme) */
+            --Theme-MoreIcon-bg-Hover: rgba(255, 255, 255, 0.2);
+            --Theme-Accordion-Content-Text-Hover: var(--Theme-Upperpart-Title-Text);
+
+
+        }
+
+        /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+       
+        /* Upper part styles */
+        .upperpart {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem; /* Adjust padding as needed */           
+        }
+
+        .upperpart_title {
+            color: var(--Theme-Upperpart-Title-Text);
+            
+        }
+
+        .upperpart_text {
+            color: var(--Theme-Upperpart-Plan-Text); /* Use the upper part plan text color */
+        }
+
+        .user-avatar{
+            border-color: var(--Theme-user-avatar-border);
+            border-width: 1px; /* Adjust width as necessary */
+            border-style: solid;
+        }
+
+
+        /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+        
+        .userPopover{
+            padding: 0.3rem 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 300ms ease-in-out;
+        }
+   
+        .userPopover:hover{
+            background-color: var(--Theme-Item-bg-Hover);
+        }
+
+        .popover-option{
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            transition: background-color 300ms ease-in-out;
+        }
+
+        .popover-option:hover{
+            background-color: var(--Theme-Item-bg-Hover);
+        }
+
+        /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+        /* Accordion styles */
+        .accordion-trigger {
+            display: flex;
+            align-items: center; /* Align icon and text */
+            transition: color 0.2s ease; /* Smooth transition for color change */
+            cursor: pointer; /* Show pointer cursor on hover */
+            justify-content: flex-start; /* Align items to the left */
+            gap: 0.5rem;
+            
+        }
+
+        /* Rotate icon when accordion is open */
+        .accordion-trigger[data-state='open'] .accordion-icon {
+            transform: rotate(90deg); /* Rotate icon when open */
+        }
+
+        .accordion-trigger:hover {
+            color: var(--Theme-Accordion-Accent); /* Change color on hover */
+        }
+
+        /* Accordion Title Styles */
+        .accordion-title {
+            color: var(--Theme-Accordion-Title-Text); /* Use the accordion title text color */
+            transition: color 0.2s ease; /* Smooth transition for color change */
+        }
+
+        .accordion-icon {
+            margin-right: 0.5rem; /* Space between icon and title */
+            transition: transform 0.2s ease; /* Smooth transition for rotation */
+            color: var(--Theme-Accordion-Icon-Color); /* Set icon color based on theme */
+        }
+
+        .accordion-trigger:hover .accordion-title {
+            color: var(--Theme-Accordion-Header-Hover); /* Change color of title on hover */
+        }
+        
+        .accordion-trigger:hover .accordion-icon {
+            color: var(--Theme-Accordion-Header-Hover); /* Change color of icon on hover */
+        }
+
+        /* ------------------------------------------------------------------------------------------------------- */
+               
+        .accordion-content {            
+            padding: 0.3rem 0.5rem; /* Adjust padding as needed */
+            color: var(--Theme-Accordion-Content-Text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+                      
+        }
+
+        .accordion-card-text{
+            color : var(--Theme-Accordion-Content-Text);
+        }
+
+        .accordion-content:hover{
+             background-color: var(--Theme-Item-bg-Hover);
+             color: var(--Theme-Accordion-Content-Text-Hover);
+        }
+
+        .more-icon {
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.2s ease; /* Smooth transition for appearance */
+            border-radius: 0.25rem; /* Maintain corner radius */
+            width: 24px; /* Adjust as needed based on your icon size */
+            height: 24px; /* Adjust as needed based on your icon size */
+            display: flex; /* Use flex to center content */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Show MoreIcon when hovering over the accordion content */
+        .accordion-content:hover .more-icon {
+            opacity: 1; /* Show icon on hover */
+        }
+        
+        /* Change background color of MoreIcon on hover */
+        .more-icon:hover {
+            background-color: var(--Theme-MoreIcon-bg-Hover); /* Adjust color as needed */
+            
+        }
+
+        /* -------------------------------------------------------------------------------------------------------- */
+
+        
+
+    }

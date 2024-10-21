@@ -1,0 +1,23 @@
+/* lib/styles/dashboard/Sidebar/Sidebar.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    :root {
+        --Theme-Background: #FFFFFF; 
+    }
+  
+    .dark {
+        --Theme-Background: #191919; 
+    }
+}
+
+
+.no-user-select {
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+  }

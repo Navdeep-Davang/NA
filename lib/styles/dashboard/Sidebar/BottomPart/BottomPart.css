@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /* Theming variables */
+    :root {
+        /* Light Theme Variables */
+        --Theme-Bottompart-Background: #FFFFFF; /* Upper part background */
+        --Theme-Bottompart-Title-Text: var(--Theme-Upperpart-Title-Text); /* Upper part title text color */
+               
+        --Theme-Bottompart-Button-Hover: var(--Theme-Item-bg-Hover);
+       
+    }
+
+    .dark {
+        /* Dark Theme Variables */
+        --Theme-Bottompart-Background: #191919; /* Upper part background */
+        --Theme-Bottompart-Title-Text: #D1D5DB; /* Upper part title text color */
+                
+        --Theme-Bottompart-Button-Hover: var(--Theme-Item-bg-Hover);
+        
+    }
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+   
+
+
+    .bottompart_button {
+        color: var(--Theme-Bottompart-Title-Text);
+        transition:  background-color 0.3s ease,
+        
+    }
+
+    .bottompart_button:hover {
+        background-color: var(--Theme-Bottompart-Button-Hover);
+        
+    }
+
+}
