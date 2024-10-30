@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /* Theming variables */
+    :root {
+        /* Light Theme Variables */
+        --Theme-Bottompart-Background: #FFFFFF; /* Upper part background */
+        --Theme-Header-Nav-Icon: #FFFFFF; /* Upper part title text color */
+               
+        --Theme-Header-Nav-Icon-Hover: rgba(255, 255, 255, 0.2);
+        
+       
+    }
+
+    .dark {
+        /* Dark Theme Variables */
+        --Theme-Bottompart-Background: #191919; /* Upper part background */
+        --Theme-Header-Nav-Icon: #191919; /* Upper part title text color */
+            
+        --Theme-Header-Nav-Icon-Hover: rgba(0, 0, 0, 0.2); 
+        
+       
+        
+    }
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+   
+
+
+    .header-nav-icon {
+        color: var(--Theme-Header-Nav-Icon);
+        transition: background-color 0.2s ease-in, color 0.2s ease-in-out;
+    }
+
+    .header-nav-icon:hover {
+        background-color: var(--Theme-Header-Nav-Icon-Hover);
+        
+    }
+
+}

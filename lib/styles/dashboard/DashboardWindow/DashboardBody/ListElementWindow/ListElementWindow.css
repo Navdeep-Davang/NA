@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /* Theming variables */
+    :root {
+        /* Light Theme Variables */
+        --Theme-Background: #FFFFFF; /* Upper part background */
+        --Theme-List-Search-Tab-Icon: #FFFFFF; /* Upper part title text color */
+        --Theme-Search-Input-Text: #FFFFFF;
+        --Theme-Accent-Off: #939393;
+        --Theme-FavoriteIcon-Stroke-Fill: var(--Theme-List-Search-Tab-Icon);
+        --Theme-FavoriteIcon-Selected-Fill:  #ffbb00;
+        
+    }
+
+    .dark {
+        /* Dark Theme Variables */
+        --Theme-Background: #191919; /* Upper part background */
+        --Theme-List-Search-Tab-Icon: #191919; /* Upper part title text color */
+        --Theme-Search-Input-Text:  #191919;
+        --Theme-Accent-Off: #939393;
+        --Theme-FavoriteIcon-Stroke-Fill: var(--Theme-List-Search-Tab-Icon);
+        --Theme-FavoriteIcon-Selected-Fill:  #ffbb00;
+    }
+
+    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+    /* List element window specific styles */
+    .list-search-tab-icon {
+        flex-shrink: 0;
+        color: var(--Theme-List-Search-Tab-Icon);
+    }
+
+    .search-list {
+        flex-grow: 1; /* Ensure it grows, but consider a max width */
+        color: var(--Theme-Search-Input-Text); /* Text color when typing */
+        cursor: text; /* Cursor color when typing */
+    }
+
+    .search-list::placeholder {
+        color: var(--Theme-Accent-Off); /* Placeholder color */
+    }
+
+    .view-mode-icon-off{
+        color: var(--Theme-Accent-Off);
+    }
+
+    .view-mode-icon-selected{
+        color: var(--Theme-Search-Input-Text);
+    }
+
+    .list-table-header-text{
+        color: var(--Theme-Search-Input-Text);
+    }
+
+    .list-item-text{
+        color: var(--Theme-Search-Input-Text);
+    }
+
+    .list-item-text{
+        color: var(--Theme-Search-Input-Text);
+    }
+
+}
+
+@layer components {
+  .items-scrollbar {
+      @apply max-h-[120px] overflow-y-auto; /* Set max height and enable vertical overflow */
+
+      /* WebKit-based browsers (Chrome, Safari, etc.) */
+      &::-webkit-scrollbar {
+          @apply w-1; /* Set scrollbar width */
+      }
+
+      &::-webkit-scrollbar-track {
+          @apply rounded-full bg-gray-100; /* Track styles */
+      }
+
+      &::-webkit-scrollbar-thumb {
+          @apply rounded-full bg-gray-300; /* Thumb styles */
+      }
+
+      /* Dark mode styles */
+      &.dark::-webkit-scrollbar-track {
+          @apply bg-neutral-700; /* Dark mode track */
+      }
+
+      &.dark::-webkit-scrollbar-thumb {
+          @apply bg-neutral-500; /* Dark mode thumb */
+      }
+  }
+}
+
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  
+  .fade-in {
+    animation: fade-in 0.3s ease-in-out;
+  }
+  
+  .fade-out {
+    animation: fade-out 0.3s ease-in-out;
+  }

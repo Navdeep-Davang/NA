@@ -7,9 +7,11 @@ import DashboardHeader from './DashboardHeader';
 import DashboardBody from './DashboardBody';
 
 
-const DashboardWindow = () => {
+// Define the prop type for DashboardWindow
+
+const DashboardWindow= () => {
     return (
-        <div className="flex-1 bg-gray-100">
+        <div className="flex-1 min-h-screen overflow-y-auto overflow-x-auto bg-gray-100 custom-scrollbar flex flex-col">
             <DashboardHeader />
             <DashboardBody />
         </div>

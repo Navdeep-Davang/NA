@@ -74,6 +74,13 @@ const config: Config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+		  scrollbar: {
+			DEFAULT: {
+			  track: 'bg-gray-200',
+			  thumb: 'bg-gray-400 hover:bg-gray-500',
+			},
+			// You can add more custom styles here
+		  },
   		keyframes: {
   			'caret-blink': {
   				'0%,70%,100%': {
@@ -107,10 +114,12 @@ const config: Config = {
   		animation: {
   			'caret-blink': 'caret-blink 1.25s ease-out infinite',
   			'accordion-down': 'accordion-down 0.3s ease-in-out', 
-        'accordion-up': 'accordion-up 0.3s ease-in-out',
+        	'accordion-up': 'accordion-up 0.3s ease-in-out',
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+	require('tailwind-scrollbar'),
+	require("tailwindcss-animate")],
 };
 export default config;

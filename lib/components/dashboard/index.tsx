@@ -2,11 +2,11 @@
 
 "use client";
 
-import React, { useRef, useState } from "react";
-import { SidebarProvider, Sidebar, SidebarTrigger } from "@/components/ui/sidebar"; // Import Sidebar and SidebarTrigger
+import React, {  useEffect, useRef, useState } from "react";
+import { SidebarProvider, Sidebar } from "@/components/ui/sidebar"; // Import Sidebar and SidebarTrigger
 import UpperPart from "@/lib/components/dashboard/Sidebar/UpperPart";
 import BottomPart from "@/lib/components/dashboard/Sidebar/BottomPart";
-import { mydata } from "@/lib/database/dashboard/Sidebar/db";
+import { mydata } from "@/lib/storage/data/dashboard/Sidebar/db";
 import DashboardWindow from "./DashboardWindow"; // Your main content area
 
 const MIN_SIDEBAR_WIDTH = 200; // Set your minimum sidebar width
@@ -14,15 +14,31 @@ const MAX_SIDEBAR_WIDTH = 300; // Set your maximum sidebar width
 
 const Dashboard = () => {
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const [toggleTriggered, setToggleTriggered] = useState(false);
   const [isResizing, setIsResizing] = useState(false); // Add this line
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [sidebarWidth, setSidebarWidth] = useState('var(--sidebar-width, 250px)');
 
+  
 
-  const handleSidebarToggle = () => {
-    setToggleTriggered(true); // Set toggle triggered state to true
-    setIsCollapsed(prev => !prev);
-  };
+  useEffect(() => {
+    if (isMobileDevice) {
+      setSidebarWidth('0px'); // Initial width for mobile devices
+    } else {
+      setSidebarWidth('var(--sidebar-width, 250px)'); // Initial default width
+    }
+  }, []); // Empty dependency array ensures this runs only on mount
+
+  useEffect(() => {
+    if (isMobileDevice) {
+      setSidebarWidth('0px'); // Hide the sidebar
+    } else if (isSidebarCollapsed) {
+      setSidebarWidth('0px'); // Set to zero if collapsed
+    } else {
+      setSidebarWidth('var(--sidebar-width, 250px)'); // Show the sidebar
+    }
+  }, [isMobileDevice, isSidebarCollapsed]);
+
 
   // Function to handle dragging
   const handleMouseMove = (e: MouseEvent) => {
@@ -45,18 +61,20 @@ const Dashboard = () => {
   };
 
   return (
-    <SidebarProvider>
+    <SidebarProvider setIsSidebarCollapsed={setIsSidebarCollapsed} setIsMobileDevice={setIsMobileDevice} >
       <div className="flex h-screen w-full">
         {/* Sidebar with dynamic width */}
         <div
           ref={sidebarRef}
-          className={`relative flex-shrink-0 ${!isResizing && toggleTriggered ? 'transition-all duration-200 ease-in-out' : ''}`} 
-          style={{ width: isCollapsed ? '0px' : 'var(--sidebar-width, 250px)' }} // Use collapsed width when isCollapsed is true
+          className={`relative flex-shrink-0 ${
+            isResizing ? 'transition-none' : 'transition-all duration-200 ease-in-out'
+          }`}
+          style={{ width: sidebarWidth }} // Use collapsed width when isCollapsed is true
         >
           <Sidebar 
             collapsible="offcanvas"
             isResizing={isResizing} // Pass the isResizing prop
-            className={`${!isResizing && toggleTriggered ? 'transition-all duration-200 ease-in-out transition-class' : ''}`} 
+            className={`${isResizing ? 'transition-none' : 'transition-all duration-200 ease-in-out'} no-user-select`}
           >
             <div className="flex-grow">
               <UpperPart {...mydata} />
@@ -72,16 +90,11 @@ const Dashboard = () => {
         </div>
 
         {/* Main content area */}
-        
-        <div className="flex-grow flex flex-col w-full">
-          <div className="flex flex-grow">
-            {/* This div should not have flex-grow since it's already in a flex container */}
-            <div className="flex flex-col w-full">
-              <SidebarTrigger className="p-2 bg-blue-500 text-white z-20 mb-4" onClick={handleSidebarToggle} />
-              <DashboardWindow />
-            </div>
-          </div>
+                
+        <div className="flex-1 h-full">
+          <DashboardWindow />
         </div>
+
       </div>
     </SidebarProvider>
   );

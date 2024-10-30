@@ -7,16 +7,16 @@
         :root {
             /* Light Theme Variables */
             --Theme-Upperpart-Background: #FFFFFF; /* Upper part background */
-            --Theme-Upperpart-Title-Text: #262626; /* Upper part title text color */
-            --Theme-Upperpart-Plan-Text: #6B7280;; /* Upper part plan text color */
+            --Theme-Upperpart-Title-Text: var(--Theme-Title-Text-Primary); /* Upper part title text color */
+            --Theme-Upperpart-Plan-Text:  var(--Theme-Body-Text-Primary);; /* Upper part plan text color */
             
             --Theme-user-avatar-border: #191919;
             
             --Theme-Accordion-Title-Text: #8d8d8d; /* Accordion title text color */
             --Theme-Accordion-Icon-Color:  var(--Theme-Upperpart-Plan-Text); /* Accordion icon color */
             --Theme-Accordion-Content-Text: var(--Theme-Upperpart-Plan-Text); /* Accordion content text color */
-            --Theme-FavoriteIcon-Stroke-Fill: var(--Theme-Accordion-Content-Text);
-            --Theme-FavoriteIcon-Selected-Fill:  #ffbb00;
+           
+            
           
 
             --Theme-Item-bg-Hover: rgba(224, 224, 224, 0.5);
@@ -29,16 +29,15 @@
         .dark {
             /* Dark Theme Variables */
             --Theme-Upperpart-Background: #191919; /* Upper part background */
-            --Theme-Upperpart-Title-Text: #D1D5DB; /* Upper part title text color */
-            --Theme-Upperpart-Plan-Text: #9CA3AF; /* Upper part plan text color */
+            --Theme-Upperpart-Title-Text: var(--Theme-Title-Text-Primary); /* Upper part title text color */
+            --Theme-Upperpart-Plan-Text:  var(--Theme-Body-Text-Primary);; /* Upper part plan text color */
             
             --Theme-user-avatar-border: #3e3e3e;
             
             --Theme-Accordion-Title-Text: #D1D5DB; /* Accordion title text color */
             --Theme-Accordion-Icon-Color:var(--Theme-Upperpart-Plan-Text); /* Accordion icon color */
             --Theme-Accordion-Content-Text: var(--Theme-Upperpart-Plan-Text); /* Accordion content text color */
-            --Theme-FavoriteIcon-Stroke-Fill: var(--Theme-Accordion-Content-Text);
-            --Theme-FavoriteIcon-Selected-Fill: #FFBB00;
+   
            
 
             --Theme-Item-bg-Hover: rgba(255, 255, 255, 0.2);

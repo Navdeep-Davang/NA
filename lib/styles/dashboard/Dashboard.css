@@ -1,23 +1,50 @@
-/* lib/styles/dashboard/Sidebar/Sidebar.css */
+/* lib/styles/dashboard/Dashboard.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
     :root {
         --Theme-Background: #FFFFFF; 
+        --Theme-Title-Text-Primary: #262626;
+        --Theme-Body-Text-Primary: #6B7280;        
     }
-  
+
     .dark {
         --Theme-Background: #191919; 
+        --Theme-Title-Text-Primary: #D1D5DB;
+        --Theme-Body-Text-Primary: #9CA3AF;       
+    }
+
+    .no-user-select {
+        user-select: none;
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
     }
 }
 
+@layer components {
+    .custom-scrollbar {
+        @apply max-h-[120px] overflow-y-auto;
 
-.no-user-select {
-    user-select: none;
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-  }
+        /* WebKit-based browsers (Chrome, Safari, etc.) */
+        &::-webkit-scrollbar {
+            width: 6px; /* Set scrollbar width */
+        }
+        &::-webkit-scrollbar-track {
+            @apply rounded-full bg-gray-100; /* Rounded track */
+        }
+        &::-webkit-scrollbar-thumb {
+            @apply rounded-full bg-gray-300; /* Rounded thumb */
+        }
+
+        /* Dark mode styles */
+        &::-webkit-scrollbar-track {
+            @apply rounded-full bg-transparent; /* Dark mode track */
+        }
+        &::-webkit-scrollbar-thumb {
+            @apply rounded-full bg-neutral-400; /* Dark mode thumb */
+        }
+    }
+}
