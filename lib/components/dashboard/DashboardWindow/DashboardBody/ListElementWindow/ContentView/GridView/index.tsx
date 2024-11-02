@@ -4,11 +4,9 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import * as React from "react";
 
 // Define the GridViewProps interface
-interface GridViewProps {
-  activeTab: 'Note' | 'Folder';
-}
 
-const GridView: React.FC<GridViewProps> = ({ activeTab }) => {
+
+const GridView = () => {
   const notes = [
     {
       title: 'Code Review',

@@ -1,66 +1,37 @@
-// lib/components/dashboard/DashboardWindow/DashboardBody/ListElementWindow/ContentView/ListView/index.tsx
+// lib\components\dashboard\DashboardWindow\DashboardBody\ListElementWindow\ContentView\ListView\index.tsx
 
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
-import { FilePenLine } from "lucide-react";
-import * as React from "react";
+import { useEffect, useState } from "react";
+import fetchListContent from "@/lib/services/dashboard/DashboardWindow/DashboardBody/ListElementWindow/ContentView/fetchListContent";
+import useListStore from "@/lib/storage/state/useListStore";
+import { Folder, Note } from "@/lib/Interface/dashboard/DashboardWindow/DashboardBody/ListElementWindow/ContentView/types";
+import FolderIcon from "@/lib/components/dashboard/svg/FolderIcon";
 import FavoriteToggler from "./FavoriteToggler";
+import { FilePenLine } from "lucide-react";
 
-
-interface ListViewProps {
-  activeTab: 'Note' | 'Folder';
-}
-
-interface Folder {
-  name: string;
-  fileCount: string;
-  lastUpdated: string;
-  dateCreated: string;
-  category: "Favorite" | "All";
-}
-
-const ListView: React.FC<ListViewProps> = ({ activeTab }) => {
-  const notes = [
-    {
-      title: 'Code Review',
-      created: '9 min ago',
-      lastUpdated: '9 min ago',
-      imageUrl: 'https://via.placeholder.com/100x80',
-    },
-    // Additional notes...
-  ];
-
-  const initialFolders: Folder[] = [
-    {
-      name: 'Folder Name',
-      fileCount: '9 Files',
-      lastUpdated: '9 min ago',
-      dateCreated: '9 min ago',
-      category: 'Favorite',
-    },
-    {
-      name: 'Another Folder',
-      fileCount: '5 Files',
-      lastUpdated: '10 min ago',
-      dateCreated: '10 min ago',
-      category: 'All',
-    },
-  ];
-
-  const [folders, setFolders] = React.useState<Folder[]>(initialFolders);
-
-  const handleToggle = (folderName: string) => {
-    setFolders((prevFolders) =>
-      prevFolders.map((folder) =>
-        folder.name === folderName
-          ? {
-              ...folder,
-              category: folder.category === "Favorite" ? "All" : "Favorite",
-            }
-          : folder
-      )
-    );
-  };
+const ListView = () => {
+  const { activeTab, notesData, notesFilter, foldersData, foldersFilter, setNotesData, setFoldersData } = useListStore();
   
+  
+  const filter = activeTab === "Note" ? notesFilter : foldersFilter;
+ 
+  useEffect(() => {
+    console.log("(ListView) Current filter:", JSON.stringify(filter));
+    const fetchData = async () => {
+      if (activeTab === "Note" && !notesData.length) {
+        console.log("(ListView) fetching notes");
+        const response = await fetchListContent({ type: activeTab, filter: notesFilter });
+        setNotesData(response as Note[]);
+      } else if (activeTab === "Folder" && !foldersData.length) {
+        console.log("(ListView) fetching folders");
+        const response = await fetchListContent({ type: activeTab, filter: foldersFilter });
+        setFoldersData(response as Folder[]);
+      }
+    };
+    fetchData();
+  }, [ JSON.stringify(filter)]);
+
+
 
   return (
     <div>
@@ -70,28 +41,36 @@ const ListView: React.FC<ListViewProps> = ({ activeTab }) => {
           <TableHeader >
             <TableRow>
               <TableCell className="list-table-header-text">Note Title</TableCell>
-              <TableCell className="list-table-header-text">Created</TableCell>
+              <TableCell className="list-table-header-text">Date Created</TableCell>
               <TableCell className="list-table-header-text">Last Updated</TableCell>
               <TableCell className="list-table-header-text">Actions</TableCell>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {notes.map((note, index) => (
-              <TableRow key={index}>
+            {notesData.map((note, index) => (
+              <TableRow key={index} className=" hover:bg-white/10  border-none rounded-lg overflow-hidden transition duration-300 ease-in-out">
                 <TableCell>
                   <div className="flex items-center gap-2">
                     <img className="w-24 h-20 rounded-lg" src={note.imageUrl} alt={note.title} />
-                    <span className="text-white text-xl font-medium">{note.title}</span>
+                    <span className="list-item-text text-lg font-medium">{note.title}</span>
                   </div>
                 </TableCell>
-                <TableCell className="text-white">{note.created}</TableCell>
-                <TableCell className="text-white">{note.lastUpdated}</TableCell>
+                <TableCell className="list-item-text text-lg font-medium">{note.dateCreated}</TableCell>
+                <TableCell className="list-item-text text-lg font-medium">{note.lastUpdated}</TableCell>
                 <TableCell>
-                  <div className="flex gap-2">
-                    <div className="FavoriteSelectedIcon w-9 h-9 p-1 justify-center items-center flex" />
-                    <div className="MoreVert w-9 h-9 py-1.5 justify-center items-center flex" />
+                <div className="flex gap-2"> 
+
+                <div className="p-1 rounded-lg cursor-pointer hover:bg-[#ffffff]/20 hover:transition-colors">
+                    <FilePenLine
+                      width="24"
+                      height="24"
+                      className="list-item-text"
+                    />
                   </div>
-                </TableCell>
+                </div>
+                  
+              </TableCell>
+
               </TableRow>
             ))}
           </TableBody>
@@ -111,14 +90,14 @@ const ListView: React.FC<ListViewProps> = ({ activeTab }) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {folders.map((folder, index) => (
+            {foldersData.map((folder, index) => (
               
-              <TableRow key={index}>
-                <TableCell>
+              <TableRow key={index} className=" hover:bg-white/10  border-none rounded-lg overflow-hidden transition duration-300 ease-in-out  ">
+                <TableCell className="p-5">
                   <div className="flex items-center gap-2">
                     <div className="FolderIcon w-16 h-12 p-2 flex-col justify-start items-start gap-2.5 inline-flex">
                       <div className="Group14 self-stretch grow shrink basis-0 relative">
-                        {/* Include folder icon SVG or image here */}
+                        <FolderIcon/>
                       </div>
                     </div>
                     <span className="list-item-text text-lg font-medium">{folder.name}</span>
@@ -128,22 +107,22 @@ const ListView: React.FC<ListViewProps> = ({ activeTab }) => {
                 <TableCell className="list-item-text text-lg font-medium">{folder.dateCreated}</TableCell>
                 <TableCell className="list-item-text text-lg font-medium">{folder.lastUpdated}</TableCell>
                 <TableCell>
-             <div className="flex gap-2">
-                <FavoriteToggler
-                  category={folder.category} // Pass the category to the toggler
-                  onToggle={() => handleToggle(folder.name)} // Pass the toggle function
-                />
+                  <div className="flex gap-2">
+                    <FavoriteToggler
+                      category={folder.category} // Pass the category to the toggler
+                      // onToggle={() => handleToggle(folder.name)} // Pass the toggle function
+                    />
 
-              <div className="p-1 rounded-lg hover:bg-[#ffffff]/10 cursor-pointer">
-              <FilePenLine
-                width="24"
-                height="24"
-                className="list-item-text"
-              />
-            </div>
+                    <div className="p-1 rounded-lg hover:bg-[#ffffff]/20 cursor-pointer">
+                      <FilePenLine
+                        width="24"
+                        height="24"
+                        className="list-item-text"
+                      />
+                    </div>
 
-            </div>
-          </TableCell>
+                  </div>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -1,50 +1,43 @@
-// lib\components\dashboard\DashboardWindow\DashboardBody\ListElementWindow\ListSortBy.tsx
-
-"use client"
-
 import { ArrowDownNarrowWide, ArrowUpWideNarrow } from "lucide-react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "./select";
-import { useEffect, useState } from "react";
+import useListStore from "@/lib/storage/state/useListStore";
+import { FolderSortBy, NoteSortBy } from "@/lib/Interface/dashboard/DashboardWindow/DashboardBody/ListElementWindow/SearchFilter/types";
 
-interface ListSortByProp {
-  activeTab: 'Note' | 'Folder';
-}
+export function ListSortBy() {
+  const { activeTab, notesFilter, foldersFilter, setNotesFilter, setFoldersFilter } = useListStore();
 
-export function ListSortBy({ activeTab }: ListSortByProp) {
-  const [ascending, setAscending] = useState(true);
-  const [sortOption, setSortOption] = useState("last-updated");
+  const filter = activeTab === "Note" ? notesFilter : foldersFilter;
+  const setFilter = activeTab === "Note" ? setNotesFilter : setFoldersFilter;
 
-
-  const toggleSort = () => {
-    setAscending(!ascending);
+  const handleSortChange = (value: string) => {
+    if (activeTab === "Folder") {
+      setFoldersFilter({ sortBy: value as FolderSortBy });
+    } else if (activeTab === "Note") {
+      setNotesFilter({ sortBy: value as NoteSortBy });
+    }
   };
 
-  useEffect(() => {
-    // Check if current sort option is valid for the active tab
-    if (activeTab === "Note" && sortOption === "file-count") {
-      // Reset to default "last-updated" if the current sort option is invalid for notes
-      setSortOption("last-updated");
-    }
-    // Add other conditions here if there are more restrictions per tab
-  }, [activeTab, sortOption]);
-
+  // Toggle between ascending and descending order
+  const toggleSort = () => {
+    setFilter({ order: filter.order === "asc" ? "desc" : "asc" });
+  };
+  
 
   return (
     <div className="flex items-center text-white text-base font-medium gap-2 p-3 bg-[#e2e2e2]/10 rounded-lg">
       <Select 
-        value={sortOption}
-        onValueChange={(value) => setSortOption(value)}
-      >
+        value={filter.sortBy}
+        onValueChange={handleSortChange} >
         <SelectTrigger className="w-auto flex items-center whitespace-nowrap flex-shrink-0 text-ellipsis">
           <SelectValue placeholder="Sort By" className="text-base font-medium" />
         </SelectTrigger>
-        <SelectContent className="mt-3" >
+        <SelectContent className="mt-3">
           <SelectGroup>
-            <SelectItem value="last-updated">Last Updated</SelectItem>
-            <SelectItem value="date-created">Date Created</SelectItem>
+            <SelectItem value="updatedDate">Last Updated</SelectItem>
+            <SelectItem value="createdDate">Date Created</SelectItem>
             <SelectItem value="name">Name</SelectItem>
             {activeTab === 'Folder' && (
-              <SelectItem value="file-count">File Count</SelectItem>
+              <SelectItem value="fileCount">File Count</SelectItem>
             )}
           </SelectGroup>
         </SelectContent>
@@ -53,7 +46,7 @@ export function ListSortBy({ activeTab }: ListSortByProp) {
         className="w-6 h-6 cursor-pointer p-0.5 rounded hover:bg-[#ffffff]/20"
         onClick={toggleSort}
       >
-        {ascending ? (
+        {filter.order === "asc" ? (
           <ArrowDownNarrowWide className="w-full h-full transition-opacity duration-300 opacity-100 fade-in" />
         ) : (
           <ArrowUpWideNarrow className="w-full h-full transition-opacity duration-300 opacity-100 fade-in" />

@@ -3,20 +3,24 @@
 import * as React from "react";
 import GridView from "./GridView";
 import ListView from "./ListView";
+import useListStore from "@/lib/storage/state/useListStore";
 
 
 interface ContentViewProps {
   viewMode: 'Grid' | 'List';
-  activeTab: 'Note' | 'Folder'; // Change from string to specific string literal types
+  
 }
 
-const ContentView: React.FC<ContentViewProps> = ({ viewMode, activeTab }) => {
+const ContentView: React.FC<ContentViewProps> = ({ viewMode }) => {
+
+  const { activeTab } = useListStore();
+
   return (
     <div className={`${viewMode === 'Grid' ? 'GridView' : 'ListView'} flex flex-col gap-4`}>
       {viewMode === 'List' ? (
-        <ListView activeTab={activeTab} />
+        <ListView />
       ) : (
-        <GridView activeTab={activeTab} />
+        <GridView />
       )}
     </div>
   );
