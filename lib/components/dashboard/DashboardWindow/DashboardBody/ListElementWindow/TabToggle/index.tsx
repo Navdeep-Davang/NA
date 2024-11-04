@@ -28,13 +28,13 @@ const TabToggle: React.FC = () => {
           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} 
         />
         <button
-          className={`w-full p-2 flex justify-center items-center gap-4 ${activeTab === 'Note' ? 'text-white' : 'text-[#dedede]'}`}
+          className={`w-full p-2 flex justify-center items-center text-base gap-4 ${activeTab === 'Note' ? 'text-white' : 'text-[#dedede]'}`}
           onClick={() => handleTabChange('Note')}
         >
           Note
         </button>
         <button
-          className={`w-full p-2 rounded-lg flex justify-center items-center gap-4 ${activeTab === 'Folder' ? 'text-white' : 'text-[#dedede]'}`}
+          className={`w-full p-2 rounded-lg flex justify-center items-center text-base gap-4 ${activeTab === 'Folder' ? 'text-white' : 'text-[#dedede]'}`}
           onClick={() => handleTabChange('Folder')}
         >
           Folder

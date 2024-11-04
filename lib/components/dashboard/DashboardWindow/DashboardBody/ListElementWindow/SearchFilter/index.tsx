@@ -6,6 +6,7 @@ import ListSearch from "./ListSearch"; // Adjust the import path as necessary
 import { ListCategory } from "./ListCategory";
 import { ListSortBy } from "./ListSortBy";
 import useListStore from "@/lib/storage/state/useListStore";
+import SearchFilterSkeleton from "./Skeleton";
 
 
 interface SearchFilterProps {
@@ -15,7 +16,12 @@ interface SearchFilterProps {
 
 const SearchFilter: React.FC<SearchFilterProps> = ({ viewMode, setViewMode }) => {
 
-  const { activeTab } = useListStore();
+  const { activeTab, loading } = useListStore();
+
+
+  if (loading) {
+    return <SearchFilterSkeleton />; // You could replace this with a spinner or skeleton
+  }
 
   return (
     <div className="Head h-16 p-2 flex flex-wrap gap-4 justify-between items-center">

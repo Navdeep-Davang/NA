@@ -12,6 +12,8 @@ interface ListState {
   foldersFilter: FolderFilterState;
   activeTab: 'Note' | 'Folder'; 
   loading: boolean;
+  loadingNotes: boolean;
+  loadingFolders: boolean;
 
   // setLoading: (isLoading: boolean) => void;
   setActiveTab: (tab: 'Note' | 'Folder') => void;
@@ -20,6 +22,8 @@ interface ListState {
   setNotesData: (notes: Note[]) => void;
   setFoldersData: (folders: Folder[]) => void;
   toggleFolderCategory: (folderName: string) => void;
+  setLoadingNotes: (loadingState: boolean) => void;
+  setLoadingFolders: (loadingState: boolean) => void;
 }
 
 const useListStore = create<ListState>()(
@@ -30,7 +34,7 @@ const useListStore = create<ListState>()(
       notesFilter: {
         sortBy: 'updatedDate',
         category: 'all',
-        order: 'asc',
+        order: 'desc',
         page: 1,
         itemsPerPage: 10,
       } as NoteFilterState,
@@ -40,7 +44,7 @@ const useListStore = create<ListState>()(
       foldersFilter: {
         sortBy: 'updatedDate',
         category: 'all',
-        order: 'asc',
+        order: 'desc',
         page: 1,
         itemsPerPage: 10,
       } as FolderFilterState,
@@ -48,6 +52,9 @@ const useListStore = create<ListState>()(
       activeTab: 'Note',
 
       loading: true,
+      loadingNotes: true,
+      loadingFolders: true,
+
 
       // setLoading: (isLoading) => set((state) => ({ ...state, loading: isLoading })),
 
@@ -70,6 +77,11 @@ const useListStore = create<ListState>()(
       
       setFoldersData: (folders) => set(() => ({ foldersData: folders })),
 
+      setLoadingNotes: (loadingState) => set(() => ({ loadingNotes: loadingState })),
+
+      setLoadingFolders: (loadingState) => set(() => ({ loadingFolders: loadingState })),
+
+
       toggleFolderCategory: (folderName) => set((state) => ({
         foldersData: state.foldersData.map((folder) =>
           folder.name === folderName
@@ -82,6 +94,7 @@ const useListStore = create<ListState>()(
     {
       name: 'list-storage',
       onRehydrateStorage: () => (state) => {
+        
         if (state) {
           setTimeout(() => {
             state.loading = false;

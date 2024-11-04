@@ -31,7 +31,7 @@ const RecentElement = () => {
                 <div className="grow shrink basis-0 p-3 bg-white/10 rounded-lg flex-col justify-start items-start gap-6 inline-flex">
                     <div className="self-stretch h-40 rounded-lg flex-col justify-center items-center flex">
                         <img
-                            className="self-stretch grow shrink basis-0 rounded-lg"
+                            className="h-full object-cover self-stretch grow shrink basis-0 rounded-lg"
                             src="https://via.placeholder.com/317x160"
                             alt="Recent Note"
                         />
@@ -47,7 +47,7 @@ const RecentElement = () => {
                 <div className="grow shrink basis-0 p-3 bg-white/10 rounded-lg flex-col justify-start items-start gap-6 inline-flex">
                     <div className="self-stretch h-40 rounded-lg flex-col justify-center items-center flex">
                         <img
-                            className="self-stretch grow shrink basis-0 rounded-lg"
+                            className="h-full object-cover self-stretch grow shrink basis-0 rounded-lg"
                             src="https://via.placeholder.com/317x160"
                             alt="Recent Note"
                         />

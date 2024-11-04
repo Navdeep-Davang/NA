@@ -113,7 +113,7 @@ export function VerifyOTPForm( { email }: VerifyOTPFormProps ) {
             
                 
             setTimeout(() => {
-             router.push("/auth/login");
+             router.push("/auth/request-otp");
             //  window.open(`/auth/request-otp`, '_blank');
             }, 2500);
     
@@ -177,9 +177,9 @@ export function VerifyOTPForm( { email }: VerifyOTPFormProps ) {
           </form>
         </Form>
         <div className="mt-4 text-center text-sm">
-          Didn't receive the code?{" "}
-          <Link href="/auth/request-otp" className="underline">
-            Resend OTP
+          Already have an account?{" "}
+          <Link href="/auth/login" className="underline">
+            Sign in
           </Link>
         </div>
       </CardContent>

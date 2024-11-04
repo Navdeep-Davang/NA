@@ -14,7 +14,7 @@ const FavoriteToggler: React.FC<FavoriteTogglerProps> = ({ category }) => {
   const variant = category === 'Favorite' ? 'selected' : 'add'; 
 
   return (
-    <div className="p-1 rounded-lg hover:bg-[#ffffff]/20 cursor-pointer" >
+    <div className="p-2 rounded-lg hover:bg-[#ffffff]/20 cursor-pointer" >
       <FavoriteIcon
         variant={variant} // Pass the variant to the FavoriteIcon
         width="24" // Set the icon width

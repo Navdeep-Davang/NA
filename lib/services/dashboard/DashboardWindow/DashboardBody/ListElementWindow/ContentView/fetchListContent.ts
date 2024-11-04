@@ -1,4 +1,4 @@
-// lib/services/dashboard/DashboardWindow/DashboardBody/ListElementWindow/ContentView/fetchListContent.ts
+// lib\services\dashboard\DashboardWindow\DashboardBody\ListElementWindow\ContentView\fetchListContent.ts
 
 import useListStore from '@/lib/storage/state/useListStore';
 import { Note, Folder } from '@/lib/Interface/dashboard/DashboardWindow/DashboardBody/ListElementWindow/ContentView/types';
@@ -9,22 +9,36 @@ interface FetchListContentParams {
   filter: NoteFilterState | FolderFilterState;
 }
 
-const fetchListContent = async ({ type, filter }: FetchListContentParams): Promise<Note[] | Folder[]> => {
-  const store = useListStore.getState();
+// Local variables to keep track of the last filter state for notes and folders
+let lastNoteFilter: NoteFilterState = {} as NoteFilterState; // Empty object for notes
+let lastFolderFilter: FolderFilterState = {} as FolderFilterState; // Empty object for folders
 
-  // Check if data exists in Zustand for the current filter and type
-  const existingData = type === 'Note' ? store.notesData : store.foldersData;
-  const existingFilter = type === 'Folder' ? store.setNotesFilter : store.setFoldersFilter;
+export const fetchListContent = async ({ type, filter }: FetchListContentParams): Promise<Note[] | Folder[]> => {
+  const { loadingNotes, loadingFolders, setLoadingNotes, setLoadingFolders, notesData, foldersData, notesFilter, foldersFilter, setNotesFilter, setFoldersFilter, setNotesData, setFoldersData } = useListStore.getState();
+  
 
-  // Check if the data matches the filter
-  const isDataInStore = JSON.stringify(existingFilter) === JSON.stringify(filter);
+console.log("S1 Current notesFilter:", JSON.stringify(notesFilter));
+console.log("S2 Current foldersFilter:", JSON.stringify(foldersFilter));
+console.log("Loading Notes:",JSON.stringify(loadingNotes));
+console.log("Loading Folders:",  JSON.stringify(loadingFolders));
+console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+  // Loading states for notes and folders
+  const setLoading = type === 'Note' ? setLoadingNotes : setLoadingFolders;
+  setLoading(true); 
 
-  if (isDataInStore && existingData.length > 0) {
+  
+  // Check if the filter is non-empty and if it has changed
+  const isFilterEmpty = Object.values(filter).every(value => value === undefined || value === null || value === '');
+  const isFilterSameAsLast = !isFilterEmpty && JSON.stringify(filter) === JSON.stringify(type === 'Note' ? lastNoteFilter : lastFolderFilter);
+  const existingData = type === 'Note' ? notesData : foldersData;
+
+  if (isFilterSameAsLast && existingData.length > 0) {
+    setLoading(false); // Reset loading state if no fetch is needed
     return existingData;
   }
 
+  // Make an API request if the filter has changed
   try {
-    // If data is not in Zustand, fetch from Next.js API
     const response = await fetch(`/api/list/data`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -39,18 +53,24 @@ const fetchListContent = async ({ type, filter }: FetchListContentParams): Promi
 
     // Store fetched data in Zustand for future use
     if (type === 'Note') {
-      store.setNotesData(data as Note[]);
-      store.setNotesFilter(filter as Partial<NoteFilterState>); // Update notes filter in Zustand
+      setNotesData(data as Note[]);
+      
+      lastNoteFilter = filter as NoteFilterState; // Update the last filter for notes
     } else {
-      store.setFoldersData(data as Folder[]);
-      store.setFoldersFilter(filter as Partial<FolderFilterState>); // Update folders filter in Zustand
+      setFoldersData(data as Folder[]);
+      
+      lastFolderFilter = filter as FolderFilterState; // Update the last filter for folders
     }
 
+    setLoading(false);
     return data;
+
   } catch (error) {
     console.error(`Error fetching ${type} content:`, error);
+    setLoading(false);
     throw error;
   }
+  
 };
 
-export default fetchListContent;
+
