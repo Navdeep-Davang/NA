@@ -12,7 +12,7 @@ const FolderGridSkeleton: React.FC = () => {
           className="border-transparent p-4 bg-white/10 rounded-lg flex flex-col justify-start items-center gap-4"
         >
           {/* Folder icon placeholder */}
-          <div className="w-full h-40 p-2 bg-white/20 rounded-lg flex justify-center items-center">
+          <div className="w-full h-40 p-2 bg-white/10 rounded-lg flex justify-center items-center">
             <Skeleton className="w-32 h-32 rounded-lg bg-white/10" />
           </div>
           

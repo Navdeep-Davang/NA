@@ -1,4 +1,4 @@
-import { ArrowDownNarrowWide, ArrowUpWideNarrow } from "lucide-react";
+import {  ArrowDownWideNarrow, ArrowUpNarrowWide } from "lucide-react";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "./select";
 import useListStore from "@/lib/storage/state/useListStore";
 import { FolderSortBy, NoteSortBy } from "@/lib/Interface/dashboard/DashboardWindow/DashboardBody/ListElementWindow/SearchFilter/types";
@@ -47,9 +47,9 @@ export function ListSortBy() {
         onClick={toggleSort}
       >
         {filter.order === "asc" ? (
-          <ArrowDownNarrowWide className="w-full h-full transition-opacity duration-300 opacity-100 fade-in" />
+          <ArrowUpNarrowWide className="w-full h-full transition-opacity duration-300 opacity-100 fade-in" />
         ) : (
-          <ArrowUpWideNarrow className="w-full h-full transition-opacity duration-300 opacity-100 fade-in" />
+          <ArrowDownWideNarrow className="w-full h-full transition-opacity duration-300 opacity-100 fade-in" />
         )}
       </div>
     </div>

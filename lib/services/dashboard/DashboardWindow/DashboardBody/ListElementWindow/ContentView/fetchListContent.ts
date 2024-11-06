@@ -16,8 +16,8 @@ export const fetchListContent = async ({ type, filter }: FetchListContentParams)
 
 console.log("S1 Current notesFilter:", JSON.stringify(notesFilter));
 console.log("S2 Current foldersFilter:", JSON.stringify(foldersFilter));
-console.log("S3 Loading Notes:",JSON.stringify(loadingNotes));
-console.log("S4 Loading Folders:",  JSON.stringify(loadingFolders));
+// console.log("S3 Loading Notes:",JSON.stringify(loadingNotes));
+// console.log("S4 Loading Folders:",  JSON.stringify(loadingFolders));
 
   // Loading states for notes and folders
   const setLoading = type === 'Note' ? setLoadingNotes : setLoadingFolders;

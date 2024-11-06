@@ -8,6 +8,8 @@ import UpperPart from "@/lib/components/dashboard/Sidebar/UpperPart";
 import BottomPart from "@/lib/components/dashboard/Sidebar/BottomPart";
 import { mydata } from "@/lib/storage/data/dashboard/Sidebar/db";
 import DashboardWindow from "./DashboardWindow"; // Your main content area
+import SettingsPanel from "./SettingsPanel";
+import { useAppStore } from "@/lib/storage/state/useAppStore";
 
 const MIN_SIDEBAR_WIDTH = 200; // Set your minimum sidebar width
 const MAX_SIDEBAR_WIDTH = 300; // Set your maximum sidebar width
@@ -18,6 +20,7 @@ const Dashboard = () => {
   const [isMobileDevice, setIsMobileDevice] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState('var(--sidebar-width, 250px)');
+  const { isSettingsOpen } = useAppStore(); 
 
   
 
@@ -92,6 +95,7 @@ const Dashboard = () => {
         {/* Main content area */}
                 
         <div className="flex-1 h-full">
+          {isSettingsOpen && <SettingsPanel />}
           <DashboardWindow />
         </div>
 

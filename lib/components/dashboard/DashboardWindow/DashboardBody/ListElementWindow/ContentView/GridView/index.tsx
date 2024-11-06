@@ -3,10 +3,9 @@
 import { Card } from "@/components/ui/card";
 import useListStore from "@/lib/storage/state/useListStore";
 import NoteListSkeleton from "../ListView/NoteListSkeleton";
-import FolderListSkeleton from "../ListView/FolderListSkeleton";
 import { MoreVertical } from "lucide-react";
 import FolderIcon from "@/lib/components/dashboard/svg/FolderIcon";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import NoteGridSkeleton from "./NoteGridSkeleton";
 import FolderGridSkeleton from "./FolderGridskeleton";
 
