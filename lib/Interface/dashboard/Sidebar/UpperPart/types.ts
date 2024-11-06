@@ -14,13 +14,19 @@ export interface Note {
     content?: string; 
 }
 
-export interface Notes {
+export interface Folder {
+    id: number;
+    name: string;
+    content?: string; 
+}
+
+export interface List {
     recent?: Note[];
-    favorite?: Note[];
+    favorite?: Folder[];
 }
 
 export interface AppData {
     appName: string;
     user: User;
-    notes: Notes; // Use the Notes type here
+    list: List; // Use the Notes type here
 }

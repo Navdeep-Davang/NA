@@ -1,9 +1,14 @@
 // lib/components/dashboard/DashboardWindow/DashboardBody/ListElementWindow/ContentView/GridView/index.tsx
 
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import useListStore from "@/lib/storage/state/useListStore";
 import NoteListSkeleton from "../ListView/NoteListSkeleton";
 import FolderListSkeleton from "../ListView/FolderListSkeleton";
+import { MoreVertical } from "lucide-react";
+import FolderIcon from "@/lib/components/dashboard/svg/FolderIcon";
+import { useEffect, useRef, useState } from "react";
+import NoteGridSkeleton from "./NoteGridSkeleton";
+import FolderGridSkeleton from "./FolderGridskeleton";
 
 
 // Define the GridViewProps interface
@@ -16,7 +21,29 @@ interface GridViewProps {
 
 const GridView: React.FC<GridViewProps> = ({ showNoteSkeleton, showFolderSkeleton }) => {
   const { loading, activeTab, notesData, foldersData } = useListStore();
+  const [columnCount, setColumnCount] = useState(6);
 
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width >= 1280) {
+        const additionalColumns = Math.floor((width - 1280) / 300);
+        const newColumnCount = 4 + additionalColumns;
+        setColumnCount(Math.min(newColumnCount, 9)); // Change 10 to 12
+      } else {
+        setColumnCount(5); // Reset to 4 for widths less than 1280
+      }
+    };
+  
+    handleResize(); // Set initial column count
+    window.addEventListener('resize', handleResize); // Update on resize
+  
+    return () => {
+      window.removeEventListener('resize', handleResize); // Cleanup
+    };
+  }, []);
+  
   return (
     <div>
       {loading ? (
@@ -26,22 +53,34 @@ const GridView: React.FC<GridViewProps> = ({ showNoteSkeleton, showFolderSkeleto
           {activeTab === "Note" ? (
             // When the active tab is Notes
             showNoteSkeleton ? (
-              <NoteListSkeleton /> // Show skeleton if loading notes
+              <NoteGridSkeleton /> // Show skeleton if loading notes
             ) : (
-              <div className="grid grid-cols-1 gap-4">
+              <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-${columnCount} gap-8`}>
                 {notesData.map((note, index) => (
-                  // Render grid cards for notes here
-                  <Card key={index} className="min-w-[240px] max-w-[300px] w-72 h-64 p-3 bg-white/10 rounded-lg flex-col justify-start items-center gap-6 inline-flex">
-                    <CardContent className="h-40 rounded-lg flex-col justify-center items-center flex">
-                      <img className="self-stretch grow shrink basis-0 rounded-lg" src={note.imageUrl} alt={note.title} />
-                    </CardContent>
-                    <CardContent className="self-stretch justify-between items-center inline-flex">
-                      <div className="Text w-36 flex-col justify-start items-start gap-2 inline-flex">
-                        <CardTitle className="self-stretch text-white text-xl font-semibold tracking-tight">{note.title}</CardTitle>
-                        <div className="Edited9minAgo text-[#dedede] text-base font-normal leading-normal tracking-tight">{note.lastUpdated}</div>
+                  <Card
+                    key={index}
+                    className="border-transparent p-4 bg-white/10 hover:bg-white/20 hover:border-white/50 rounded-lg flex flex-col justify-start items-center gap-4 transition-colors duration-300 ease-in-out"
+                  >
+                    <div className="self-stretch h-40 rounded-lg flex justify-center items-center">
+                      <img
+                        className="self-stretch grow shrink rounded-lg"
+                        src={note.imageUrl || "https://via.placeholder.com/228x160"}
+                        alt={note.title}
+                      />
+                    </div>
+                    <div className="self-stretch flex justify-between items-center">
+                      <div className="pl-2 flex flex-col justify-start items-start gap-1 flex-grow">
+                        <div className="text-white text-lg font-medium">
+                          {note.title}
+                        </div>
+                        <div className="text-[#dedede] text-base font-normal leading-normal tracking-tight">
+                          {note.lastUpdated}
+                        </div>
                       </div>
-                      <div className="MoreVert w-8 h-8 py-1.5 rounded-lg justify-center items-center flex" />
-                    </CardContent>
+                      <div className="py-1.5 rounded-lg hover:bg-white/20 transition-colors duration-300 ease-in-out flex justify-center items-center">
+                        <MoreVertical className="text-[#dedede] w-8 h-8 " />
+                      </div>
+                    </div>
                   </Card>
                 ))}
               </div>
@@ -51,24 +90,33 @@ const GridView: React.FC<GridViewProps> = ({ showNoteSkeleton, showFolderSkeleto
           {activeTab === "Folder" ? (
             // When the active tab is Folders
             showFolderSkeleton ? (
-              <FolderListSkeleton /> // Show skeleton if loading folders
+              <FolderGridSkeleton /> // Show skeleton if loading folders
             ) : (
-              <div className="grid grid-cols-1 gap-4">
+              <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-${columnCount} gap-8`}>
                 {foldersData.map((folder, index) => (
                   // Render grid cards for folders here
-                  <Card key={index} className="min-w-[240px] max-w-[300px] w-60 h-64 p-3 bg-white/20 rounded-lg flex-col justify-start items-center gap-6 inline-flex">
-                    <CardContent className="self-stretch h-40 rounded-lg flex-col justify-center items-center flex">
-                      <div className="FolderIcon self-stretch grow shrink basis-0 p-2 bg-white/50 rounded-lg flex-col justify-center items-center gap-2.5 flex">
-                        <div className="Group14 w-36 h-24 relative" />
+                  <Card
+                    key={index}
+                    className="border-transparent p-4 bg-white/10 hover:bg-white/20 hover:border-white/50 rounded-lg flex flex-col justify-start items-center gap-4 transition-colors duration-300 ease-in-out"
+                  >
+                    <div className="Image w-full h-40 rounded-lg flex-col justify-center items-center inline-flex">
+                      <div className="w-full h-40 p-2 bg-white/50 rounded-lg flex-col justify-center items-center gap-2.5 flex"> 
+                        <FolderIcon width={140} /> {/* Folder icon replaces the note image */}
                       </div>
-                    </CardContent>
-                    <CardContent className="self-stretch justify-between items-center inline-flex">
-                      <div className="Text w-36 flex-col justify-start items-start gap-2 inline-flex">
-                        <CardTitle className="self-stretch text-white text-xl font-semibold tracking-tight">{folder.name}</CardTitle>
-                        <div className="File text-[#dedede] text-base font-normal leading-normal tracking-tight">{folder.fileCount}</div>
+                    </div>
+                    <div className="self-stretch flex justify-between items-center">
+                      <div className="pl-2 flex flex-col justify-start items-start gap-1 flex-grow">
+                        <div className="text-white text-lg font-medium">
+                          {folder.name} {/* Assuming folder has a title */}
+                        </div>
+                        <div className="text-[#dedede] text-base font-normal leading-normal tracking-tight">
+                          {folder.fileCount} {/* Display file count for folders */}
+                        </div>
                       </div>
-                      <div className="MoreVert w-8 h-8 py-1.5 rounded-lg justify-center items-center flex" />
-                    </CardContent>
+                      <div className="py-1.5 rounded-lg hover:bg-white/20 transition-colors duration-300 ease-in-out flex justify-center items-center">
+                        <MoreVertical className="text-[#dedede] w-8 h-8 " /> {/* Lucide More icon */}
+                      </div>
+                    </div>
                   </Card>
                 ))}
               </div>

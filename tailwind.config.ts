@@ -1,13 +1,14 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-    darkMode: ["class"],
-    content: [
+darkMode: ["class"],
+content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
 	"./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [ 'xl:grid-cols-4', 'xl:grid-cols-5', 'xl:grid-cols-6', 'xl:grid-cols-7', 'xl:grid-cols-8', 'xl:grid-cols-9', 'lg:grid-cols-4', ], 
   theme: {
   	extend: {
   		colors: {

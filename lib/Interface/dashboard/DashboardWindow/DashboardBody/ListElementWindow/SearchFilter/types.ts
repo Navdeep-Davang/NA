@@ -18,10 +18,12 @@ export type OrderType = 'asc' | 'desc';
 
 export type NoteSortBy = 'createdDate' | 'updatedDate' | 'name';
 export type FolderSortBy = 'createdDate' | 'updatedDate' | 'name' | 'fileCount';
+export type NoteCategory = 'all';
+export type FolderCategory = 'all' | 'favorites';
 
 export interface NoteFilterState {
   sortBy: NoteSortBy ;
-  category: 'all';
+  category: NoteCategory;
   order: OrderType;
   page: number;
   itemsPerPage: number;
@@ -29,7 +31,7 @@ export interface NoteFilterState {
 
 export interface FolderFilterState {
   sortBy: FolderSortBy;
-  category: 'all' | 'favorites';
+  category: FolderCategory;
   order: OrderType;
   page: number;
   itemsPerPage: number;

@@ -6,6 +6,10 @@ import TabToggleSkeleton from "./Skeleton";
 const TabToggle: React.FC = () => {
   const { activeTab, setActiveTab, loading} = useListStore();
 
+  if (loading) {
+    return <TabToggleSkeleton />; // Display skeleton while loading
+  }
+
   const handleTabChange = (tab: 'Note' | 'Folder') => {
     
     if (activeTab !== tab) {           
@@ -13,9 +17,7 @@ const TabToggle: React.FC = () => {
     }
   };
 
-  if (loading) {
-    return <TabToggleSkeleton />; // Display skeleton while loading
-  }
+  
 
   return (
     <div className="flex flex-col justify-center items-center gap-2.5">

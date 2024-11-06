@@ -9,31 +9,28 @@ interface FetchListContentParams {
   filter: NoteFilterState | FolderFilterState;
 }
 
-// Local variables to keep track of the last filter state for notes and folders
-let lastNoteFilter: NoteFilterState = {} as NoteFilterState; // Empty object for notes
-let lastFolderFilter: FolderFilterState = {} as FolderFilterState; // Empty object for folders
 
 export const fetchListContent = async ({ type, filter }: FetchListContentParams): Promise<Note[] | Folder[]> => {
-  const { loadingNotes, loadingFolders, setLoadingNotes, setLoadingFolders, notesData, foldersData, notesFilter, foldersFilter, setNotesFilter, setFoldersFilter, setNotesData, setFoldersData } = useListStore.getState();
+  const { loadingNotes, loadingFolders, setLoadingNotes, setLoadingFolders, notesData, foldersData, notesFilter, foldersFilter, setNotesData, setFoldersData, lastNoteFilter, lastFolderFilter, setLastNoteFilter, setLastFolderFilter } = useListStore.getState();
   
 
 console.log("S1 Current notesFilter:", JSON.stringify(notesFilter));
 console.log("S2 Current foldersFilter:", JSON.stringify(foldersFilter));
-console.log("Loading Notes:",JSON.stringify(loadingNotes));
-console.log("Loading Folders:",  JSON.stringify(loadingFolders));
-console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+console.log("S3 Loading Notes:",JSON.stringify(loadingNotes));
+console.log("S4 Loading Folders:",  JSON.stringify(loadingFolders));
+
   // Loading states for notes and folders
   const setLoading = type === 'Note' ? setLoadingNotes : setLoadingFolders;
-  setLoading(true); 
+  setLoading(true);
 
-  
-  // Check if the filter is non-empty and if it has changed
-  const isFilterEmpty = Object.values(filter).every(value => value === undefined || value === null || value === '');
-  const isFilterSameAsLast = !isFilterEmpty && JSON.stringify(filter) === JSON.stringify(type === 'Note' ? lastNoteFilter : lastFolderFilter);
+  // Check if the filter has changed
   const existingData = type === 'Note' ? notesData : foldersData;
+  const lastFilter = type === 'Note' ? lastNoteFilter : lastFolderFilter;
 
-  if (isFilterSameAsLast && existingData.length > 0) {
+  if (JSON.stringify(filter) === JSON.stringify(lastFilter) && existingData.length > 0) {
     setLoading(false); // Reset loading state if no fetch is needed
+    console.log("S5.0 Didnt hit the API retuning the existing data");
+    console.log("---------------------------------------------------------------");
     return existingData;
   }
 
@@ -45,6 +42,9 @@ console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       body: JSON.stringify({ type, filter }),
     });
 
+    console.log("S5.1  HIT the API retuning the existing data");
+    console.log("---------------------------------------------------------------");
+
     if (!response.ok) {
       throw new Error(`Failed to fetch ${type} data`);
     }
@@ -55,11 +55,11 @@ console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     if (type === 'Note') {
       setNotesData(data as Note[]);
       
-      lastNoteFilter = filter as NoteFilterState; // Update the last filter for notes
+      setLastNoteFilter(filter as NoteFilterState); // Update the last filter for notes
     } else {
       setFoldersData(data as Folder[]);
       
-      lastFolderFilter = filter as FolderFilterState; // Update the last filter for folders
+      setLastFolderFilter(filter as FolderFilterState); // Update the last filter for folders
     }
 
     setLoading(false);

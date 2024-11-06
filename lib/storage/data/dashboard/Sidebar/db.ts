@@ -11,7 +11,7 @@ export const mydata: AppData = {
       avatar: "/path/to/avatar.png",
       plan: "Free",
     },
-    notes: {
+    list: {
       recent: [
         { id: 1, title: "Meeting Notes", content: "Discuss project updates." },
         { id: 2, title: "Grocery List", content: "Milk, Bread, Eggs." },
@@ -19,8 +19,8 @@ export const mydata: AppData = {
         { id: 4, title: "Reading List", content: "Books to read this month." },
       ],
       favorite: [
-        { id: 5, title: "Travel Plans", content: "Plan the trip to Europe." },
-        { id: 6, title: "Birthday Ideas", content: "Surprise party for Jane." },
+        { id: 5, name: "Travel Plans", content: "Plan the trip to Europe." },
+        { id: 6, name: "Birthday Ideas", content: "Surprise party for Jane." },
       ],
     },
   };

@@ -12,7 +12,7 @@ import { BadgeCheck, CreditCard, Bell, ArrowUpRight, ChevronRight } from "lucide
 import Logo from "../svg/LogoIcon";
 
 
-import { AppData, User, Notes } from "@/lib/Interface/dashboard/Sidebar/UpperPart/types";
+import { AppData, User, List } from "@/lib/Interface/dashboard/Sidebar/UpperPart/types";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { PopoverArrow } from "@radix-ui/react-popover";
 
@@ -22,13 +22,14 @@ import CustomCollapsible from "./CustomCollapsible";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { FavoriteIcon, MoreIcon, NoteIcon } from "../svg";
+import FolderIcon from "../svg/FolderIcon";
 
 // Main component
 export default function UpperPart(mydata: AppData) {
   
 
   // Destructure mydata
-  const { appName, user, notes }: AppData = mydata;
+  const { appName, user, list }: AppData = mydata;
 
   return (
     <div className="flex flex-col space-y-2 pt-2 pl-2 pr-2">
@@ -39,7 +40,7 @@ export default function UpperPart(mydata: AppData) {
       <UserPopover user={user}  />
 
       {/* Content for Notes */}
-      <Content notes={notes} />
+      <Content list={list} />
     </div>
   );
 }
@@ -120,13 +121,17 @@ const UserPopover = ({ user }: { user: User }) => {
 
 
 
-const Content = ({ notes }: { notes: Notes }) => {
+const Content = ({ list }: { list: List}) => {
+
+  const recentNotes = list?.recent || [];
+  const favoriteFolder = list?.favorite || [];
+
   return (
       <div className="space-y-2">
           {/* Recent Notes */}
           <CustomCollapsible defaultOpen={true} trigger={<span className="accordion-title text-center text-base font-semibold ">Recent</span>}>
-          {notes.recent?(              
-              notes.recent.map((note) => (
+          {recentNotes.length > 0 ? (              
+              recentNotes.map((note) => (
                   <div key={note.id} className="accordion-content rounded-md flex items-center justify-between cursor-pointer ">
                       
                       <div className="flex items-center space-x-2 pl-1">
@@ -155,12 +160,12 @@ const Content = ({ notes }: { notes: Notes }) => {
 
           {/* Favorite Notes */}
           <CustomCollapsible defaultOpen={false} trigger={<span className="accordion-title text-center text-base font-semibold">Favorites</span>}>
-          {notes.favorite?( 
-              notes.favorite.map((note) => (
-                  <div key={note.id} className="accordion-content rounded-md flex items-center justify-between cursor-pointer ">
+          {favoriteFolder.length > 0 ? (  
+              favoriteFolder.map((folder) => (
+                  <div key={folder.id} className="accordion-content rounded-md flex items-center justify-between cursor-pointer ">
                        <div className="flex items-center space-x-2 pl-1">
-                          <NoteIcon />
-                          <span>{note.title}</span>
+                          <FolderIcon width={18}/>
+                          <span>{folder.name}</span>
                         </div>
                         <MoreIcon className="more-icon"/>
                   </div>

@@ -8,14 +8,10 @@ import { fetchListContent } from "@/lib/services/dashboard";
 import { useEffect, useMemo, useState } from "react";
 
 
-interface ContentViewProps {
-  viewMode: 'Grid' | 'List';
-  
-}
 
-const ContentView: React.FC<ContentViewProps> = ({ viewMode }) => {
+const ContentView = () => {
 
-  const { loading, loadingNotes, loadingFolders, activeTab, notesFilter, foldersFilter, setLoadingNotes, setLoadingFolders } = useListStore();
+  const { loading, loadingNotes, loadingFolders, activeTab, viewMode, notesFilter, foldersFilter } = useListStore();
   const [showNoteSkeleton, setShowNoteSkeleton] = useState(false);
   const [showFolderSkeleton, setShowFolderSkeleton] = useState(false);
 

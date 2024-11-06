@@ -8,22 +8,32 @@ import { persist } from 'zustand/middleware';
 interface ListState {
   notesData: Note[];
   notesFilter: NoteFilterState;
+  lastNoteFilter: NoteFilterState | {}; 
   foldersData: Folder[];
-  foldersFilter: FolderFilterState;
+  foldersFilter: FolderFilterState;  
+  lastFolderFilter: FolderFilterState | {}; 
   activeTab: 'Note' | 'Folder'; 
+  viewMode: 'List' | 'Grid';
   loading: boolean;
   loadingNotes: boolean;
   loadingFolders: boolean;
+  notePage: number;
+  folderPage: number;
 
   // setLoading: (isLoading: boolean) => void;
   setActiveTab: (tab: 'Note' | 'Folder') => void;
+  setViewMode: (mode: 'Grid' | 'List')  => void;
   setNotesFilter: (newFilter: Partial<NoteFilterState>) => void;
+  setLastFolderFilter: (filter: FolderFilterState) => void;
   setFoldersFilter: (newFilter: Partial<FolderFilterState>) => void;
+  setLastNoteFilter: (filter: NoteFilterState) => void;   
   setNotesData: (notes: Note[]) => void;
   setFoldersData: (folders: Folder[]) => void;
   toggleFolderCategory: (folderName: string) => void;
   setLoadingNotes: (loadingState: boolean) => void;
   setLoadingFolders: (loadingState: boolean) => void;
+  setNotePage: (page: number) => void;
+  setFolderPage: (page: number) => void;
 }
 
 const useListStore = create<ListState>()(
@@ -38,7 +48,7 @@ const useListStore = create<ListState>()(
         page: 1,
         itemsPerPage: 10,
       } as NoteFilterState,
-
+    
       foldersData: [],
 
       foldersFilter: {
@@ -51,9 +61,17 @@ const useListStore = create<ListState>()(
 
       activeTab: 'Note',
 
+      viewMode: 'List',
+
+      notePage: 1,
+      folderPage: 1,
+
       loading: true,
       loadingNotes: true,
       loadingFolders: true,
+
+      lastNoteFilter: {},  
+      lastFolderFilter: {},
 
 
       // setLoading: (isLoading) => set((state) => ({ ...state, loading: isLoading })),
@@ -65,12 +83,22 @@ const useListStore = create<ListState>()(
         return state;
       }),
 
+      setViewMode: (mode: 'Grid' | 'List') => set(() => ({ viewMode: mode })),
+
       setNotesFilter: (newFilter) => set((state) => ({
         notesFilter: { ...state.notesFilter, ...newFilter },
+      })),
+
+      setLastNoteFilter: (filter) => set((state) => ({
+        lastNoteFilter: { ...state.lastNoteFilter, ...filter },
       })),
       
       setFoldersFilter: (newFilter) => set((state) => ({
         foldersFilter: { ...state.foldersFilter, ...newFilter },
+      })),
+      
+      setLastFolderFilter: (filter) => set((state) => ({
+        lastFolderFilter: { ...state.lastFolderFilter, ...filter },
       })),
 
       setNotesData: (notes) => set(() => ({ notesData: notes })),
@@ -81,6 +109,14 @@ const useListStore = create<ListState>()(
 
       setLoadingFolders: (loadingState) => set(() => ({ loadingFolders: loadingState })),
 
+      setNotePage: (page: number) => set((state) => {
+        state.notesFilter.page = page;
+        return { notePage: page };
+      }),
+      setFolderPage: (page: number) => set((state) => {
+        state.foldersFilter.page = page;
+        return { folderPage: page };
+      }),
 
       toggleFolderCategory: (folderName) => set((state) => ({
         foldersData: state.foldersData.map((folder) =>
