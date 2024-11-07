@@ -3,10 +3,15 @@
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const FolderGridSkeleton: React.FC = () => {
+
+interface FolderGridSkeletonProps {
+  columnCount: number;
+}
+
+const FolderGridSkeleton: React.FC<FolderGridSkeletonProps> = ({ columnCount }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-      {[...Array(12)].map((_, index) => (
+    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-${columnCount} gap-8`}>
+      {[...Array(10)].map((_, index) => (
         <Card
           key={index}
           className="border-transparent p-4 bg-white/10 rounded-lg flex flex-col justify-start items-center gap-4"
@@ -18,7 +23,7 @@ const FolderGridSkeleton: React.FC = () => {
           
           {/* Folder details placeholder */}
           <div className="self-stretch flex justify-between items-center">
-            <div className="pl-2 flex flex-col justify-start items-start gap-1 flex-grow">
+            <div className="pl-2 flex flex-col justify-start items-start gap-4 flex-grow">
               <Skeleton className="w-3/4 h-5 rounded bg-white/10" /> {/* Folder name */}
               <Skeleton className="w-1/2 h-4 rounded bg-white/10" /> {/* File count */}
             </div>

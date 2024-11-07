@@ -8,28 +8,34 @@ const CreateElement = () => {
                 <div className="text-center text-white text-base font-medium leading-normal tracking-tight">Create</div>
             </div>
             <div className="self-stretch p-2 justify-start items-center gap-8 inline-flex w-full"> 
-                <div className="grow shrink basis-0 h-24 p-4 bg-white rounded-lg justify-start items-center gap-4 flex w-full"> 
-                    <div className="p-3 bg-[#434343] rounded justify-start items-center gap-2.5 flex">
+
+
+                <div className="grow shrink basis-0 h-24 p-4 bg-white/10 rounded-lg justify-start items-center gap-4 flex w-full"> 
+                    <div className="p-3  bg-white/20  rounded justify-start items-center gap-2.5 flex">
                         <div className="justify-start items-center gap-2.5 flex">
                             <div className="w-8 h-8 relative"></div>
                         </div>
                     </div>
-                    <div className="p-1 bg-[#e2e2e2]/10 rounded flex-col justify-center items-start gap-1 inline-flex w-full"> 
-                        <div className="text-center text-[#7e7979] text-xl font-bold tracking-tight">Notes</div>
-                        <div className="text-center text-[#7e7979] text-base font-medium leading-normal tracking-tight">Create note file</div>
+                    <div className="p-1 rounded flex-col justify-center items-start gap-1 inline-flex w-full"> 
+                        <div className="text-center text-white text-xl font-bold tracking-tight">Notes</div>
+                        <div className="text-center text-white text-base font-medium leading-normal tracking-tight">Create note file</div>
                     </div>
                 </div>
-                <div className="grow shrink basis-0 h-24 p-4 bg-white rounded-lg justify-start items-center gap-4 flex w-full">
-                    <div className="p-3 bg-[#434343] rounded justify-start items-center gap-2.5 flex">
+
+
+                <div className="grow shrink basis-0 h-24 p-4 bg-white/10 rounded-lg justify-start items-center gap-4 flex w-full">
+                    <div className="p-3 bg-white/20 rounded justify-start items-center gap-2.5 flex">
                         <div className="justify-start items-center gap-2.5 flex">
                             <div className="w-8 h-8 relative"></div>
                         </div>
                     </div>
-                    <div className="p-1 bg-[#e2e2e2]/10 rounded flex-col justify-center items-start gap-1 inline-flex w-full"> 
-                        <div className="text-center text-[#7e7979] text-xl font-bold tracking-tight">Folders</div>
-                        <div className="text-center text-[#7e7979] text-base font-medium leading-normal tracking-tight">Create new folder</div>
+                    <div className="p-1 rounded flex-col justify-center items-start gap-1 inline-flex w-full"> 
+                        <div className="text-center text-white  text-xl font-bold tracking-tight">Folders</div>
+                        <div className="text-center text-white  text-base font-medium leading-normal tracking-tight">Create new folder</div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     );

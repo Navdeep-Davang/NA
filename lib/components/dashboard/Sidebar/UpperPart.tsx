@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { FavoriteIcon, MoreIcon, NoteIcon } from "../svg";
 import FolderIcon from "../svg/FolderIcon";
+import { MoreOptionPanel } from "./MoreOptionPanel";
 
 // Main component
 export default function UpperPart(mydata: AppData) {
@@ -138,7 +139,16 @@ const Content = ({ list }: { list: List}) => {
                           <NoteIcon />
                           <span>{note.title}</span>
                       </div>
-                      <MoreIcon className="more-icon"/>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <button className="more-icon rounded-lg hover:bg-gray-200">
+                            <MoreIcon className="more-icon" />
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent className="p-2 w-auto border-none">
+                          <MoreOptionPanel type="note" />
+                        </PopoverContent>
+                      </Popover>
                   </div>
               ))
             ) : (
@@ -167,7 +177,16 @@ const Content = ({ list }: { list: List}) => {
                           <FolderIcon width={18}/>
                           <span>{folder.name}</span>
                         </div>
-                        <MoreIcon className="more-icon"/>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <button className="more-icon rounded-lg hover:bg-gray-200">
+                              <MoreIcon className="more-icon" />
+                            </button>
+                          </PopoverTrigger>
+                          <PopoverContent className=" w-auto p-2 border-none">
+                            <MoreOptionPanel type="folder" />
+                          </PopoverContent>
+                      </Popover>
                   </div>
               ))
             ):(

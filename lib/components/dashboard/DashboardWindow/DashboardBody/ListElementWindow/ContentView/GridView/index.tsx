@@ -52,7 +52,7 @@ const GridView: React.FC<GridViewProps> = ({ showNoteSkeleton, showFolderSkeleto
           {activeTab === "Note" ? (
             // When the active tab is Notes
             showNoteSkeleton ? (
-              <NoteGridSkeleton /> // Show skeleton if loading notes
+              <NoteGridSkeleton columnCount= {columnCount} /> // Show skeleton if loading notes
             ) : (
               <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-${columnCount} gap-8`}>
                 {notesData.map((note, index) => (
@@ -89,7 +89,7 @@ const GridView: React.FC<GridViewProps> = ({ showNoteSkeleton, showFolderSkeleto
           {activeTab === "Folder" ? (
             // When the active tab is Folders
             showFolderSkeleton ? (
-              <FolderGridSkeleton /> // Show skeleton if loading folders
+              <FolderGridSkeleton columnCount= {columnCount} /> // Show skeleton if loading folders
             ) : (
               <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-${columnCount} gap-8`}>
                 {foldersData.map((folder, index) => (
