@@ -1,7 +1,7 @@
 // lib\components\dashboard\Sidebar\MoreOptionPanel.tsx
 
 
-import { Edit, Info, FolderPlus, HeartOff, Trash } from 'lucide-react';
+import { Edit, Info, FolderPlus, Trash } from 'lucide-react';
 import { FavoriteIcon } from '../svg';
 import { Button } from '@/components/ui/button';
 
@@ -10,7 +10,7 @@ interface MoreOptionPanelProps {
   }
   
 export const MoreOptionPanel = ({ type }: MoreOptionPanelProps) => (
-  <div className="popup-note h-full rounded-lg flex flex-col gap-2">
+  <div className="popup-note h-full rounded-lg flex flex-col gap-0">
     <OptionItem icon={<Edit className="w-5 h-5" />} label="Rename" />
     <OptionItem icon={<Info className="w-5 h-5" />} label="View Info" />
     
@@ -33,18 +33,19 @@ export const MoreOptionPanel = ({ type }: MoreOptionPanelProps) => (
     {/* Divider */}
     <div className="self-stretch h-px bg-[#cac4d0]/50" />
 
-    <OptionItem icon={<Trash className="w-5 h-5" />} label="Delete" isDestructive />
+    <OptionItem icon={<Trash className="w-5 h-5" />} label="Delete" isDestructive className="mt-2" />
   </div>
 );
 
 // Helper Component for each option
-const OptionItem: React.FC<{ icon: React.ReactNode; label: string; isDestructive?: boolean }> = ({
+const OptionItem: React.FC<{ icon: React.ReactNode; label: string; isDestructive?: boolean,  className?: string; }> = ({
     icon,
     label,
     isDestructive = false,
+    className = ''
   }) => {
     return isDestructive ? (
-        <div className="w-full h-auto flex justify-center">
+      <div className={`w-full h-auto flex justify-center ${className}`}>
             <Button
                 variant="destructive"
                 className="flex items-centerp-2 px-4 gap-3 h-auto w-full justify-center"

@@ -11,7 +11,7 @@ import DashboardBody from './DashboardBody';
 
 const DashboardWindow= () => {
     return (
-        <div className="flex-1 min-h-screen overflow-y-auto overflow-x-auto bg-gray-100 custom-scrollbar flex flex-col">
+        <div className="flex-1 min-h-screen pl-12 pr-12 overflow-y-auto overflow-x-auto bg-gray-100 custom-scrollbar flex flex-col">
             <DashboardHeader />
             <DashboardBody />
         </div>
