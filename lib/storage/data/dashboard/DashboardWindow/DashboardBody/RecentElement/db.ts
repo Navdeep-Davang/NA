@@ -20,4 +20,11 @@ export const recentNotesData = [
         image: 'https://via.placeholder.com/317x160',
         lastUpdated: '1 month ago',
     },
+    {
+        id: '4',
+        title: 'Title of the Fourth Note',
+        image: 'https://via.placeholder.com/317x160',
+        lastUpdated: '2 month ago',
+    },
+    
 ];

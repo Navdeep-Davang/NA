@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    /* Light Theme Variables */
+    :root {
+        --CreateElement-Background: #FFFFFF; /* Light background */
+        --CreateElement-Text: #111827; /* Light text color */
+        --CreateElement-SubText: #7e7979; /* Subtext color */
+        --CreateElement-Hover-Background: #F3F4F6; /* Light hover background */
+        --Button-Background: #434343; /* Button background */
+        --Button-Icon-Color: #FFFFFF; /* Button icon color */
+        --Button-Hover-Background: #2C2C2C; /* Button hover background */
+    }
+
+    /* Dark Theme Variables */
+    .dark {
+        --CreateElement-Background: #2A3C4D; /* Dark background */
+        --CreateElement-Text: #E5E7EB; /* Dark text color */
+        --CreateElement-SubText: #9CA3AF; /* Subtext color */
+        --CreateElement-Hover-Background: #374151; /* Dark hover background */
+        --Button-Background: #2C2C2C; /* Button background */
+        --Button-Icon-Color: #E5E7EB; /* Button icon color */
+        --Button-Hover-Background: #434343; /* Button hover background */
+    }
+
+    /* Utility classes for light and dark mode */
+    .create-card {
+        background-color: var(--CreateElement-Background);
+    }
+
+    .create-text {
+        color: var(--CreateElement-Text);
+    }
+
+    .create-subtext {
+        color: var(--CreateElement-SubText);
+    }
+
+    .create-hover:hover {
+        background-color: var(--CreateElement-Hover-Background);
+    }
+
+    .create-button {
+        background-color: var(--Button-Background);
+        color: var(--Button-Icon-Color);
+    }
+
+    .create-button:hover {
+        background-color: var(--Button-Hover-Background);
+    }
+
+    .create-button-icon {
+        width: 2rem;
+        height: 2rem;
+        background-color: var(--Button-Background);
+        color: var(--Button-Icon-Color);
+        border-radius: 0.375rem;
+    }
+}

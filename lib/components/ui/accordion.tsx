@@ -29,7 +29,7 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "accordion-trigger",
+        "accordion-trigger focus:outline-none",
         className
       )}
       {...props}

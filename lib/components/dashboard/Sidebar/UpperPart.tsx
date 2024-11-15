@@ -65,13 +65,14 @@ const LogoHeader = ({ appName, user }: { appName: string; user: User }) => {
 
 // UserPopover Component
 const UserPopover = ({ user }: { user: User }) => {
+  const avatarUrl = user.avatar || '/assets/images/avatar.png';
   return (
     <div className="relative">
       <Popover>
         <PopoverTrigger asChild className="userPopover">
           <div className="flex items-center cursor-pointer">
             <Avatar className="h-8 w-8 rounded-lg">
-              <AvatarImage src={user.avatar} alt={user.name} />
+              <AvatarImage src={avatarUrl} alt={user.name} />
               <AvatarFallback className="user-avatar">{user.name[0]}</AvatarFallback>
             </Avatar>
             <div className="ml-2 text-left flex items-center">
@@ -128,7 +129,7 @@ const Content = ({ list }: { list: List}) => {
   const favoriteFolder = list?.favorite || [];
 
   return (
-      <div className="space-y-2">
+      <div className="space-y-2 mt-2">
           {/* Recent Notes */}
           <CustomCollapsible defaultOpen={true} trigger={<span className="accordion-title text-center text-base font-semibold ">Recent</span>}>
           {recentNotes.length > 0 ? (              

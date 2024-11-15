@@ -8,7 +8,7 @@ export const mydata: AppData = {
     user: {
       name: "John Doe",
       email: "john.doe@example.com",
-      avatar: "/path/to/avatar.png",
+      avatar: "https://images.unsplash.com/broken",
       plan: "Free",
     },
     list: {
