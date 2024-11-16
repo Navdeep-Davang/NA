@@ -82,7 +82,7 @@ export default function ListSearch() {
   }, []);
 
   return (
-    <div ref={containerRef} className={`relative p-3 bg-[#e2e2e2]/10 rounded-lg flex flex-shrink-0 items-center gap-2 ${hasText ? "bg-white/20" : "bg-[#e2e2e2]/10"}`}>
+    <div ref={containerRef} className={`relative p-3 rounded-lg flex flex-shrink-0 items-center gap-2 ${hasText ? "listview-filter-item-active" : "listview-filter-bg"}`}>
       <div className="flex items-center gap-2" onClick={handleParentClick}>
         <SearchIcon className='list-search-tab-icon ml-2' />
         <SearchInput

@@ -12,27 +12,60 @@
         --Theme-Card-Text: rgba(0, 0, 0, 0.6); /* Card text color */
         --Theme-Card-Text-Title: #111827; /* Card title text color */
         --Theme-Card-Shadow: rgba(0, 0, 0, 0.1); /* Card shadow */
-        --Theme-Card-Hover-Shadow: rgba(0, 0, 0, 0.2); /* Hover shadow */
-        --Theme-Card-Hover-Border: #D1D5DB; /* Border color on hover (light theme) */
+        --Theme-Card-Shadow-Hover: rgba(0, 0, 0, 0.2); /* Hover shadow */
+        --Theme-Card-Border-Hover: rgba(0, 0, 0, 0.2); /* Border color on hover (light theme) */
         --Theme-Icon-Color: rgba(0, 0, 0, 0.6); /* Light theme icon color */
         --Theme-Icon-Hover-Bg: rgba(0, 0, 0, 0.05); /* Light theme hover background */
+       
+        --Theme-Button-Background: #FFFFFF; /* Light button background */
+        --Theme-Button-Title: var(--Theme-Card-Text-Title);
+        --Theme-Button-Text: var(--Theme-Card-Text);
+        --Theme-Button-Border: #E1E4E8;
+        --Theme-Button-Icon-Color: rgb(102, 102, 102); /* Button icon color */       
+        --Theme-Button-Icon-Bg: rgba(0, 0, 0, 0.05); /* Button icon hover background */
+        --Theme-Button-Shadow: rgba(0, 0, 0, 0.1);
+        --Theme-Button-Shadow-Hover: rgba(0, 0, 0, 0.2);
+        --Theme-Button-Border-Hover: #D1D5DB;
+        --Theme-Button-Title-Hover: #E5E7EB;
+        --Theme-Button-Text-Hover:rgba(255, 255, 255, 0.6) ;
+        --Theme-Button-Background-Hover: rgb(44, 44, 44); /* Button background on hover */
+        --Theme-Button-Icon-Color-Hover: rgba(255, 255, 255, 0.6); /* Button icon color on hover */
+        --Theme-Button-Icon-Bg-Hover: rgba(255, 255, 255, 0.2); /* Button icon background on hover */
+
     }
 
     .dark {
         /* Dark Theme Variables */
-        --Theme-Background: #1F2937; /* Background color */
-        --Theme-Card-Background: #2A3C4D; /* Card background */
-        --Theme-Card-Border: #3E4C63; /* Card border */
+        --Theme-Background: #2d3136; /* Background color */
+        --Theme-Card-Background: #2e3032; /* Card background */
+        --Theme-Card-Border: #6b6b6b; /* Card border */
         --Theme-Card-Text: rgba(255, 255, 255, 0.6); /* Card text color */
         --Theme-Card-Text-Title: #E5E7EB; /* Card title text color */
         --Theme-Card-Shadow: rgba(0, 0, 0, 0.2); /* Card shadow */
-        --Theme-Card-Hover-Shadow: rgba(255, 255, 255, 0.3); /* Hover shadow */
-        --Theme-Card-Hover-Border: rgba(255, 255, 255, 0.3); /* Border color on hover (dark theme) */
+        --Theme-Card-Shadow-Hover: rgba(255, 255, 255, 0.3); /* Hover shadow */
+        --Theme-Card-Border-Hover: rgba(255, 255, 255, 0.3); /* Border color on hover (dark theme) */
         --Theme-Icon-Color: rgba(255, 255, 255, 0.6); /* Dark theme icon color */
         --Theme-Icon-Hover-Bg: rgba(255, 255, 255, 0.2); /* Dark theme hover background */
+      
+        --Theme-Button-Background: #2e3032; /* Dark button background */
+        --Theme-Button-Title: var(--Theme-Card-Text-Title);
+        --Theme-Button-Text:var(--Theme-Card-Text) ;
+        --Theme-Button-Border: #6b6b6b;
+        --Theme-Button-Icon-Color: rgba(255, 255, 255, 0.6); /* Button icon color in dark mode */
+        --Theme-Button-Icon-Bg: rgba(255, 255, 255, 0.2); /* Button icon hover background in dark mode */
+        --Theme-Button-Shadow: rgba(255, 255, 255, 0.1);
+        --Theme-Button-Shadow-Hover: rgba(255, 255, 255, 0.3);
+        --Theme-Button-Border-Hover: #9CA3AF; /* Slightly lighter shade of dark border */
+        --Theme-Button-Title-Hover: #111827;
+        --Theme-Button-Text-Hover:rgba(0, 0, 0, 0.6) ;
+        --Theme-Button-Background-Hover: #E5E7EB; /* Button background on hover in dark mode */
+        --Theme-Button-Icon-Color-Hover: rgba(0, 0, 0, 0.6); /* Button icon color on hover in dark mode */
+        --Theme-Button-Icon-Bg-Hover: rgba(0, 0, 0, 0.1);; /* Button icon background on hover in dark mode */
     }
 
-    /* Utility classes to use theme variables with Tailwind */
+    /* Theme For Dashboard Boady */
+
+    /* Theme for the Recent Element  */
     .theme-background {
         background-color: var(--Theme-Background);
     }
@@ -55,27 +88,88 @@
 
     .theme-card-shadow {
         box-shadow: 0px 4px 6px var(--Theme-Card-Shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Add transition */
     }
 
-    /* Hover effects */
-    .theme-card-hover-shadow:hover {
-        box-shadow: 0px 8px 12px var(--Theme-Card-Hover-Shadow);
-        transform: scale(1.01); /* Increase scale on hover */
-        border-color: var(--Theme-Card-Hover-Border); /* Change border color on hover */
+    .theme-card-shadow-hover {
+        box-shadow: 0px 4px 6px var(--Theme-Card-Shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
-
-    /* Additional hover effect for dark theme (white border and white shadow) */
-    .dark .theme-card-hover-shadow:hover {
-        border-color: var(--Theme-Card-Hover-Border); /* Light border color for dark mode */
-        box-shadow: 0px 8px 12px var(--Theme-Card-Hover-Shadow); /* White shadow for dark mode */
+    
+    .theme-card-shadow-hover:hover {
+        box-shadow: 0px 8px 12px var(--Theme-Card-Shadow-Hover);
+        transform: scale(1.005); /* Increase scale on hover */
+        border-color: var(--Theme-Card-Border-Hover); /* Change border color on hover */
     }
-
-    .theme-icon {
+    
+    .theme-card-icon {
         color: var(--Theme-Icon-Color);
     }
 
-    .theme-icon-hover:hover {
+    .theme-card-icon-hover:hover {
         background-color: var(--Theme-Icon-Hover-Bg);
         transition: background-color 0.3s ease, transform 0.3s ease; /* Adds smooth transition for hover effect */
     }
+
+    /* __________________________________________________________________________________________________________________ */
+   
+    /* Create Element Component */
+
+    /* Create Button Shadow */
+    .theme-button-shadow {
+        box-shadow: 0px 0px 6px var(--Theme-Button-Shadow); /* Uniform glow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .theme-button-shadow:hover {
+        box-shadow: 0px 0px 12px var(--Theme-Button-Shadow-Hover); /* Brighter uniform glow on hover */
+        transform: scale(1.005); /* Slightly enlarge */
+        border-color: var(--Theme-Button-Border-Hover); /* Update border color on hover */
+    }
+    
+   
+    /* Button */
+    .theme-button-background{
+        background-color: var(--Theme-Button-Background);
+    }
+
+    .theme-button-border {
+        border-color: var(--Theme-Button-Border);
+    }
+
+
+    .theme-button-background:hover{
+        background-color: var(--Theme-Button-Background-Hover);
+        transition: background-color 0.3s ease; /* Adds smooth transition for hover effect */
+    }
+
+    .theme-button-icon {
+        color: var(--Theme-Button-Icon-Color);
+        background-color: var(--Theme-Button-Icon-Bg);
+    }
+
+    /* Button Icon Hover Effect */
+    .theme-button-icon-hover {
+        color: var(--Theme-Button-Icon-Color-Hover);
+        background-color: var(--Theme-Button-Icon-Bg-Hover);
+    }
+
+    .theme-button-text {
+        color: var(--Theme-Button-Text);
+    }
+
+    .theme-button-title {
+        color: var(--Theme-Button-Title);
+    }
+
+    .theme-button-text-hover {
+        color: var(--Theme-Button-Text-Hover);
+    }
+
+    .theme-button-title-hover {
+        color: var(--Theme-Button-Title-Hover);
+    }
+
+    
+        
 }

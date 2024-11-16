@@ -57,7 +57,7 @@ const RecentElement = () => {
     return (
         <div ref={parentRef} className="w-full h-auto p-6 theme-background rounded-lg flex-col justify-start items-start gap-4">
             <header className="flex justify-between items-center w-full mb-4">
-                <h2 className="text-lg font-semibold text-theme-card-title">Recent Notes</h2>
+                <h2 className="text-lg font-semibold">Recent Notes</h2>
             </header>
             {isCarousel ? (
                 <Carousel className="w-full" orientation = "horizontal" setApi={setCarouselApi} onChange={handleCarouselChange} >
@@ -71,7 +71,7 @@ const RecentElement = () => {
                                     }}
                                 >
                                     {slide.map((note) => (
-                                        <Card key={note.id} className="group flex flex-col theme-card-background theme-card-border theme-card-hover-shadow">
+                                        <Card key={note.id} className="group flex flex-col theme-card-background theme-card-border theme-card-shadow-hover">
                                             <CardHeader>
                                                 <img className="w-full h-full rounded-lg object-cover" src={note.image} alt={note.title} />
                                             </CardHeader>
@@ -82,8 +82,8 @@ const RecentElement = () => {
                                                         <History className="w-4 h-4" />
                                                         <span>{note.lastUpdated}</span>
                                                     </div>
-                                                    <div className="p-1 rounded-lg theme-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                        <MoreVertical className="w-6 h-6 theme-icon" />
+                                                    <div className="p-1 rounded-lg theme-card-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                        <MoreVertical className="w-6 h-6 theme-card-icon" />
                                                     </div>
                                                 </div>
                                             </CardContent>
@@ -114,7 +114,7 @@ const RecentElement = () => {
                     }}
                 >
                     {recentNotesData.slice(0, maxVisibleNotes).map((note) => (
-                        <Card key={note.id} className="group flex flex-col theme-card-background theme-card-border theme-card-hover-shadow">
+                        <Card key={note.id} className="group flex flex-col theme-card-background theme-card-border theme-card-shadow-hover">
                             <CardHeader>
                                 <img className="w-full h-full rounded-lg object-cover" src={note.image} alt={note.title} />
                             </CardHeader>
@@ -125,8 +125,8 @@ const RecentElement = () => {
                                         <History className="w-4 h-4" />
                                         <span>{note.lastUpdated}</span>
                                     </div>
-                                    <div className="p-1 rounded-lg theme-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <MoreVertical className="w-6 h-6 theme-icon" />
+                                    <div className="p-1 rounded-lg theme-card-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <MoreVertical className="w-6 h-6 theme-card-icon" />
                                     </div>
                                 </div>
                             </CardContent>
