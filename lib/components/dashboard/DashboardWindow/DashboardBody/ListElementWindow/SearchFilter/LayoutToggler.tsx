@@ -10,21 +10,21 @@ const LayoutToggler = () => {
     const { viewMode, setViewMode} = useListStore();
   
     return (
-    <div className="ViewAs h-12 px-2 bg-white/10 rounded-lg justify-center items-center gap-3 inline-flex">
+    <div className=" h-auto p-1 hover:cursor-default listview-filter-inactive hover:listview-filter-hover rounded-lg justify-center items-center gap-0 inline-flex">
       <div
-        className="List p-1 justify-start items-center gap-2.5 flex cursor-pointer"
+        className="List p-2 justify-start items-center  flex cursor-pointer"
         onClick={() => setViewMode('List')}
       >
         <List
-          className={`w-6 h-6 ${viewMode === 'List' ? 'view-mode-icon-selected' : 'view-mode-icon-off'}`}
+          className={`w-6 h-6 ${viewMode === 'List' ? 'listview-filter-title cursor-default' : 'listview-filter-icon-inactive hover:listview-filter-text'}`}
         />
       </div>      
       <div
-        className="Grid p-1 justify-start items-center gap-2.5 flex cursor-pointer"
+        className="Grid p-2 justify-start items-center flex cursor-pointer"
         onClick={() => setViewMode('Grid')}
       >
         <LayoutGrid
-          className={`w-6 h-6 ${viewMode === 'Grid' ? 'view-mode-icon-selected' : 'view-mode-icon-off'}`}
+          className={`w-6 h-6 ${viewMode === 'Grid' ? 'listview-filter-title cursor-default' : 'listview-filter-icon-inactive hover:listview-filter-text'}`}
         />
       </div>
       

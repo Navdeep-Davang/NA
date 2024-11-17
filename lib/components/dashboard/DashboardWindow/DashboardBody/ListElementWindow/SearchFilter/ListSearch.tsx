@@ -82,9 +82,13 @@ export default function ListSearch() {
   }, []);
 
   return (
-    <div ref={containerRef} className={`relative p-3 rounded-lg flex flex-shrink-0 items-center gap-2 ${hasText ? "listview-filter-item-active" : "listview-filter-bg"}`}>
-      <div className="flex items-center gap-2" onClick={handleParentClick}>
-        <SearchIcon className='list-search-tab-icon ml-2' />
+    <div ref={containerRef}
+     className={`relative p-3 rounded-lg flex flex-shrink-0 items-center hover:cursor-pointer hover:listview-filter-hover gap-2 ${hasText ? "listview-filter-active" : "listview-filter-inactive"}`}
+     onClick={handleParentClick} 
+    >
+    
+      <div className="flex items-center gap-2" >
+        <SearchIcon className=' ml-2' />
         <SearchInput
             ref={searchInputRef}
             value={searchTerm}
@@ -93,7 +97,7 @@ export default function ListSearch() {
             onBlur={handleBlur}
             maxWidth="150px"
             placeholder="Search for Anything"
-            className="flex-grow border-none bg-transparent text-base font-medium search-list focus:outline-none"
+            className="flex-grow border-none bg-transparent text-base font-medium  focus:outline-none"
         />
         <div className="relative">
             {/* Reserve space for the close icon */}
@@ -104,7 +108,7 @@ export default function ListSearch() {
                             setSearchTerm("");
                             setIsInputFocused(false);
                         }}
-                        className="list-search-tab-icon w-6 h-6 absolute right-1" // Absolute positioning
+                        className=" w-6 h-6 absolute right-1" // Absolute positioning
                     />
                 )}
             </div>
@@ -121,7 +125,7 @@ export default function ListSearch() {
               animate={{ opacity: 1, maxHeight: maxHeight }} // Animate based on calculated maxHeight
               exit={{ opacity: 0, maxHeight: 0 }} // Shrink back to maxHeight: 0
               transition={{ duration: 0.3 }}
-              className="absolute z-10 top-full mt-1 left-0 w-full bg-white shadow-lg rounded-lg overflow-hidden"
+              className="absolute z-10 top-full mt-1 left-0 w-full listview-filter-panel shadow-lg rounded-lg overflow-hidden"
             >
             {/* Loading State */}
             {loading && (
@@ -131,7 +135,7 @@ export default function ListSearch() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="p-2 text-gray-500 flex items-center justify-center"
+                className="p-2 listview-filter-text flex items-center justify-center"
               >
                 Loading...
               </motion.div>
@@ -150,11 +154,11 @@ export default function ListSearch() {
               
               {filteredNotes.length > 0 && (
                   <div>
-                    <div className="text-sm font-semibold mt-2">Notes</div>
+                    <div className="text-sm listview-filter-title pl-1 font-semibold mt-2">Notes</div>
                     <div className="items-scrollbar"
                     >
                       {filteredNotes.slice(0, 4).map((note) => (
-                        <div key={note.id} className="p-2 hover:bg-gray-100 transition-colors">
+                        <div key={note.id} className="p-2 listview-filter-item rounded-lg">
                           {note.title}
                         </div>
                       ))}
@@ -165,11 +169,11 @@ export default function ListSearch() {
 
                 {filteredFolders.length > 0 && (
                   <div>
-                    <div className="text-sm font-semibold mt-4">Folders</div>
+                    <div className="text-sm listview-filter-title pl-1 font-semibold mt-4">Folders</div>
                     <div className="items-scrollbar"
                     >
                       {filteredFolders.slice(0, 4).map((folder) => (
-                        <div key={folder.id} className="p-2 hover:bg-gray-100 transition-colors">
+                        <div key={folder.id} className="p-2 listview-filter-item rounded-lg">
                           {folder.name}
                         </div>
                       ))}

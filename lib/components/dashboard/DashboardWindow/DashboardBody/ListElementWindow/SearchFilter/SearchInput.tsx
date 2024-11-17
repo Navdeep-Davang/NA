@@ -13,7 +13,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, InputProps>(
         type={type}
         style={{ maxWidth }}
         className={cn(
-          "flex w-full rounded-md border-none bg-transparent  text-base transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foregrounds focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+          "flex w-full rounded-md border-none bg-transparent hover:cursor-pointer  text-base transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foregrounds focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         ref={ref}

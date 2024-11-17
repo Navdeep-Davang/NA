@@ -21,7 +21,7 @@ const SearchFilter = () => {
   return (
     <div className="Head p-2 flex flex-wrap gap-4 justify-between items-center">
       <div className="Name flex justify-center items-center gap-2.5">
-      <span className="text-white text-lg font-medium">
+      <span className="listview-filter-title text-lg font-medium">
           {activeTab === 'Folder' ? 'Listed Folders' : 'Listed Notes'}
         </span>
       </div>

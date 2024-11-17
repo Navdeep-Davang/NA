@@ -13,12 +13,17 @@
         --ListView-Tab-Text-Inactive-Hover: rgba(0, 0, 0, 0.8); /* Inactive text hover color */
     
         --ListView-Filter-Bg: rgba(226, 226, 226, 0.5);
-        --ListView-Filter-Text: rgba(0, 0, 0, 0.8);
+        --ListView-Filter-Text: rgba(0, 0, 0, 0.6);
         --ListView-Filter-Title: rgba(0, 0, 0, 1);
+        --ListView-Filter-Hover: rgba(0, 0, 0, 0.1);
+        --ListView-Filter-Active: rgba(0, 0, 0, 0.1);
+        --ListView-Filter-Inactive: rgba(0, 0, 0, 0.05);
+        --ListView-Filter-Icon-Inactive: rgba(0, 0, 0, 0.3);
         --ListView-Filter-Panel-Bg: rgba(255, 255, 255, 1);
-        --ListView-Filter-Item-Hover: rgba(0, 0, 0, 0.1);
-        --ListView-Filter-Item-Active: rgba(0, 0, 0, 0.2);
-        --ListView-Filter-Item-Inactive: rgba(0, 0, 0, 0.4);
+        --ListView-Filter-Item: rgba(0, 0, 0, 0.5);
+        --ListView-Filter-Item-Hover: rgba(0, 0, 0, 0.05);
+        
+        
         
     }
 
@@ -34,10 +39,15 @@
         --ListView-Filter-Bg: rgba(0, 0, 0, 0.2);
         --ListView-Filter-Text: rgba(255, 255, 255, 0.8);
         --ListView-Filter-Title: rgba(255, 255, 255, 1);
-        --ListView-Filter-Panel-Bg: rgba(30, 30, 30, 1);
+        --ListView-Filter-Hover: rgba(255, 255, 255, 0.2);
+        --ListView-Filter-Active: rgba(255, 255, 255, 0.2);
+        --ListView-Filter-Inactive: rgba(255, 255, 255, 0.1);
+        --ListView-Filter-Icon-Inactive: rgba(255, 255, 255, 0.5);
+        --ListView-Filter-Panel-Bg: rgb(40, 40, 40);
+        --ListView-Filter-Item: rgba(255, 255, 255, 0.5);
         --ListView-Filter-Item-Hover: rgba(255, 255, 255, 0.1);
-        --ListView-Filter-Item-Active: rgba(255, 255, 255, 0.2);
-        --ListView-Filter-Item-Inactive: rgba(255, 255, 255, 0.4);
+       
+       
        
     }
 
@@ -86,32 +96,50 @@
         color: var(--ListView-Filter-Text);
         transition: color 0.3s ease;
     }
- 
+
     .listview-filter-title {
-        color: var(--ListView-Filter-Title);
-        font-weight: bold;
+        color: var(--ListView-Filter-Title);        
         transition: color 0.3s ease;
     }
 
-    .listview-filter-panel-bg {
+    .listview-filter-panel {
         background-color: var(--ListView-Filter-Panel-Bg);
         transition: background-color 0.3s ease;
     }
 
-    .listview-filter-item-hover {
+    .listview-filter-hover {
+        background-color: var(--ListView-Filter-Hover);
+        transition: background-color 0.3s ease;
+    }
+    
+    .listview-filter-active {
+        background-color: var(--ListView-Filter-Active);
+        transition: background-color 0.3s ease;
+    }
+    
+    .listview-filter-inactive {
+        background-color: var(--ListView-Filter-Inactive);
+        transition: background-color 0.3s ease;
+    }
+    
+    .listview-filter-icon-inactive {
+        color: var(--ListView-Filter-Icon-Inactive);
+        transition: background-color 0.3s ease;
+    }
+    
+
+    .listview-filter-item:hover {
         background-color: var(--ListView-Filter-Item-Hover);
         transition: background-color 0.3s ease;
     }
+   
 
-    .listview-filter-item-active {
-        background-color: var(--ListView-Filter-Item-Active);
+    .listview-filter-item {
+        color: var(--ListView-Filter-Text);
         transition: background-color 0.3s ease;
     }
 
-    .listview-filter-item-inactive {
-        background-color: var(--ListView-Filter-Item-Inactive);
-        transition: background-color 0.3s ease;
-    }
+
 
 
 
