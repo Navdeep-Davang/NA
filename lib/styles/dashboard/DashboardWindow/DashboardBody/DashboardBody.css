@@ -7,10 +7,13 @@
     :root {
         /* Light Theme Variables */
         --Theme-Background: #F7F9FB; /* Background color */
+        --Theme-Skeleton-Bg: rgba(0, 0, 0, 0.1); /* bg-dark/10 */
+        --Theme-Skeleton-Text: rgba(0, 0, 0, 0.2); /* bg-dark/20 */
+        --Theme-Skeleton-Border: rgba(0, 0, 0, 0.5);
         --Theme-Card-Background: #FFFFFF; /* Card background */
         --Theme-Card-Border: #E1E4E8; /* Card border */
-        --Theme-Card-Text: rgba(0, 0, 0, 0.6); /* Card text color */
-        --Theme-Card-Text-Title: #111827; /* Card title text color */
+        --Theme-Card-Text: var(--Theme-Body-Text-Primary); /* Card text color */
+        --Theme-Card-Title: var(--Theme-Title-Text-Primary); /* Card title text color */
         --Theme-Card-Shadow: rgba(0, 0, 0, 0.1); /* Card shadow */
         --Theme-Card-Shadow-Hover: rgba(0, 0, 0, 0.2); /* Hover shadow */
         --Theme-Card-Border-Hover: rgba(0, 0, 0, 0.2); /* Border color on hover (light theme) */
@@ -18,7 +21,7 @@
         --Theme-Icon-Hover-Bg: rgba(0, 0, 0, 0.05); /* Light theme hover background */
        
         --Theme-Button-Background: #FFFFFF; /* Light button background */
-        --Theme-Button-Title: var(--Theme-Card-Text-Title);
+        --Theme-Button-Title: var(--Theme-Card-Title);
         --Theme-Button-Text: var(--Theme-Card-Text);
         --Theme-Button-Border: #E1E4E8;
         --Theme-Button-Icon-Color: rgb(102, 102, 102); /* Button icon color */       
@@ -37,10 +40,13 @@
     .dark {
         /* Dark Theme Variables */
         --Theme-Background: #2d3136; /* Background color */
+        --Theme-Skeleton-Bg: rgba(255, 255, 255, 0.1); /* bg-white/10 */
+        --Theme-Skeleton-Text: rgba(255, 255, 255, 0.2); /* bg-white/20 */
+        --Theme-Skeleton-Border: rgba(255, 255, 255, 0.4);
         --Theme-Card-Background: #2e3032; /* Card background */
         --Theme-Card-Border: #6b6b6b; /* Card border */
-        --Theme-Card-Text: rgba(255, 255, 255, 0.6); /* Card text color */
-        --Theme-Card-Text-Title: #E5E7EB; /* Card title text color */
+        --Theme-Card-Text: var(--Theme-Body-Text-Primary); /* Card text color */
+        --Theme-Card-Title: var(--Theme-Title-Text-Primary); /* Card title text color */
         --Theme-Card-Shadow: rgba(0, 0, 0, 0.2); /* Card shadow */
         --Theme-Card-Shadow-Hover: rgba(255, 255, 255, 0.3); /* Hover shadow */
         --Theme-Card-Border-Hover: rgba(255, 255, 255, 0.3); /* Border color on hover (dark theme) */
@@ -48,7 +54,7 @@
         --Theme-Icon-Hover-Bg: rgba(255, 255, 255, 0.2); /* Dark theme hover background */
       
         --Theme-Button-Background: #2e3032; /* Dark button background */
-        --Theme-Button-Title: var(--Theme-Card-Text-Title);
+        --Theme-Button-Title: var(--Theme-Card-Title);
         --Theme-Button-Text:var(--Theme-Card-Text) ;
         --Theme-Button-Border: #6b6b6b;
         --Theme-Button-Icon-Color: rgba(255, 255, 255, 0.6); /* Button icon color in dark mode */
@@ -70,6 +76,19 @@
         background-color: var(--Theme-Background);
     }
 
+    .theme-skeleton-bg {
+        background-color: var(--Theme-Skeleton-Bg);
+      }
+      
+    .theme-skeleton-text {
+        background-color: var(--Theme-Skeleton-Text);
+      }
+
+    .theme-skeleton-border {
+        border: 1px solid var(--Theme-Skeleton-Border);
+    }
+      
+
     .theme-card-background {
         background-color: var(--Theme-Card-Background);
     }
@@ -83,7 +102,7 @@
     }
 
     .theme-card-title {
-        color: var(--Theme-Card-Text-Title);
+        color: var(--Theme-Card-Title);
     }
 
     .theme-card-shadow {

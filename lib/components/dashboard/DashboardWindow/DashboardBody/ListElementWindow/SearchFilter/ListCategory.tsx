@@ -37,7 +37,7 @@ export function ListCategory() {
         <SelectValue placeholder="Category" className=" text-base font-medium " /> {/* Add a specific class for placeholder color */}
         <ChevronDown className="w-6 h-6 p-1 " />
       </SelectTrigger>
-      <SelectContent className="mt-3 listview-filter-panel">
+      <SelectContent className=" listview-filter-panel">
         <SelectGroup >
           <SelectItem value="all">All</SelectItem>         
           {activeTab === 'Folder' && (

@@ -63,7 +63,7 @@ export default function ListSearch() {
     // Delay to check if the user clicked on the dropdown
     setTimeout(() => {
       if (!containerRef.current?.contains(document.activeElement)) {
-        setIsInputFocused(false);
+        setIsInputFocused(false);        
       }
     }, 0);
   };
@@ -83,7 +83,7 @@ export default function ListSearch() {
 
   return (
     <div ref={containerRef}
-     className={`relative p-3 rounded-lg flex flex-shrink-0 items-center hover:cursor-pointer hover:listview-filter-hover gap-2 ${hasText ? "listview-filter-active" : "listview-filter-inactive"}`}
+     className={`relative p-3 rounded-lg flex flex-shrink-0 items-center hover:cursor-pointer hover:listview-filter-hover gap-2 ${isInputFocused ? "listview-filter-active" : "listview-filter-inactive"}`}
      onClick={handleParentClick} 
     >
     
@@ -158,7 +158,7 @@ export default function ListSearch() {
                     <div className="items-scrollbar"
                     >
                       {filteredNotes.slice(0, 4).map((note) => (
-                        <div key={note.id} className="p-2 listview-filter-item rounded-lg">
+                        <div key={note.id} className="p-2 mt-1 listview-filter-item rounded-lg">
                           {note.title}
                         </div>
                       ))}
@@ -168,12 +168,12 @@ export default function ListSearch() {
 
 
                 {filteredFolders.length > 0 && (
-                  <div>
+                  <div className='mb-2'>
                     <div className="text-sm listview-filter-title pl-1 font-semibold mt-4">Folders</div>
                     <div className="items-scrollbar"
                     >
                       {filteredFolders.slice(0, 4).map((folder) => (
-                        <div key={folder.id} className="p-2 listview-filter-item rounded-lg">
+                        <div key={folder.id} className="p-2 mt-1 listview-filter-item rounded-lg">
                           {folder.name}
                         </div>
                       ))}

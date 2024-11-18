@@ -81,9 +81,9 @@ const UserPopover = ({ user }: { user: User }) => {
             </div>
           </div>
         </PopoverTrigger>
-        <PopoverContent className="z-50 p-4 w-48">
+        <PopoverContent className="z-50 p-4 more-option-panel w-auto">
           <PopoverArrow />
-          <div className="space-y-2">
+          <div className="space-y-2 ">
             <span className="block text-sm text-center ">{user.email}</span> 
             <hr />
             <Button 
@@ -142,11 +142,11 @@ const Content = ({ list }: { list: List}) => {
                       </div>
                       <Popover>
                         <PopoverTrigger asChild>
-                          <button className="more-icon rounded-lg hover:bg-gray-200">
+                          <button className="more-icon rounded-lg">
                             <MoreIcon className="more-icon" />
                           </button>
                         </PopoverTrigger>
-                        <PopoverContent className="p-2 w-auto border-none">
+                        <PopoverContent className="p-2 more-option-panel w-auto border">
                           <MoreOptionPanel type="note" />
                         </PopoverContent>
                       </Popover>
@@ -180,11 +180,11 @@ const Content = ({ list }: { list: List}) => {
                         </div>
                         <Popover>
                           <PopoverTrigger asChild>
-                            <button className="more-icon rounded-lg hover:bg-gray-200">
+                            <button className="more-icon rounded-lg">
                               <MoreIcon className="more-icon" />
                             </button>
                           </PopoverTrigger>
-                          <PopoverContent className=" w-auto p-2 border-none">
+                          <PopoverContent className=" w-auto p-2 more-option-panel border">
                             <MoreOptionPanel type="folder" />
                           </PopoverContent>
                       </Popover>

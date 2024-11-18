@@ -8,33 +8,33 @@ const NoteListSkeleton: React.FC = () => {
     <Table>
       <TableHeader>
         <TableRow>
-            <TableCell><Skeleton className="w-32 h-5 bg-white/20" /></TableCell> {/* Note Title skeleton */}
-            <TableCell><Skeleton className="w-24 h-5 bg-white/20" /></TableCell> {/* Date Created skeleton */}
-            <TableCell><Skeleton className="w-24 h-5 bg-white/20" /></TableCell> {/* Last Updated skeleton */}
-            <TableCell><Skeleton className="w-16 h-5 bg-white/20" /></TableCell> {/* Actions skeleton */}
+            <TableCell><Skeleton className="w-32 h-5 theme-skeleton-text" /></TableCell> {/* Note Title skeleton */}
+            <TableCell><Skeleton className="w-24 h-5 theme-skeleton-text" /></TableCell> {/* Date Created skeleton */}
+            <TableCell><Skeleton className="w-24 h-5 theme-skeleton-text" /></TableCell> {/* Last Updated skeleton */}
+            <TableCell><Skeleton className="w-16 h-5 theme-skeleton-text" /></TableCell> {/* Actions skeleton */}
         </TableRow>
       </TableHeader>
       <TableBody>
         {rows.map((_, index) => (
           <TableRow
             key={index}
-            className="hover:bg-white/20 border-none rounded-lg overflow-hidden transition duration-300 ease-in-out"
+            className="hover:theme-skeleton-bg border-none rounded-lg overflow-hidden transition duration-300 ease-in-out"
           >
             <TableCell>
               <div className="flex items-center gap-2">
-                <Skeleton className="w-24 h-20 rounded-lg bg-white/20" /> {/* Image skeleton */}
-                <Skeleton className="w-40 h-6 bg-white/20" /> {/* Title skeleton */}
+                <Skeleton className="w-24 h-20 rounded-lg theme-skeleton-text" /> {/* Image skeleton */}
+                <Skeleton className="w-40 h-6 theme-skeleton-text" /> {/* Title skeleton */}
               </div>
             </TableCell>
             <TableCell>
-              <Skeleton className="w-32 h-6 bg-white/20" /> {/* Date Created skeleton */}
+              <Skeleton className="w-32 h-6 theme-skeleton-text" /> {/* Date Created skeleton */}
             </TableCell>
             <TableCell>
-              <Skeleton className="w-32 h-6 bg-white/20" /> {/* Last Updated skeleton */}
+              <Skeleton className="w-32 h-6 theme-skeleton-text" /> {/* Last Updated skeleton */}
             </TableCell>
             <TableCell>
               <div className="flex gap-2">
-                <Skeleton className="w-6 h-6 rounded-md bg-white/20" /> {/* Action icon skeleton */}
+                <Skeleton className="w-6 h-6 rounded-md theme-skeleton-text" /> {/* Action icon skeleton */}
               </div>
             </TableCell>
           </TableRow>

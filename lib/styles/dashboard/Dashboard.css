@@ -6,14 +6,24 @@
 @layer base {
     :root {
         --Theme-Background: #FFFFFF; 
-        --Theme-Title-Text-Primary: #262626;
-        --Theme-Body-Text-Primary: #6B7280;        
+        --Theme-Title-Text-Primary: #111827;
+        --Theme-Body-Text-Primary: rgba(0, 0, 0, 0.6); 
+        --Theme-Item-Bg-Hover: rgba(0, 0, 0, 0.1);
+        
+        --Favorite-Icon-StrokeFill: rgba(0, 0, 0, 0.8);; /* Example: Neutral gray for light mode */
+        --Favorite-Icon-SelectedFill: rgb(255, 187, 0);
+        
     }
 
     .dark {
         --Theme-Background: #191919; 
-        --Theme-Title-Text-Primary: #D1D5DB;
-        --Theme-Body-Text-Primary: #9CA3AF;       
+        --Theme-Title-Text-Primary: #E5E7EB;
+        --Theme-Body-Text-Primary: rgba(255, 255, 255, 0.6);   
+        --Theme-Item-Bg-Hover: rgba(255, 255, 255, 0.2);
+
+        --Favorite-Icon-StrokeFill: rgba(255, 255, 255, 1);
+        --Favorite-Icon-SelectedFill: rgb(255, 187, 0);
+        
     }
 
     .no-user-select {
@@ -22,6 +32,26 @@
         -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
     }
+
+    .favorite-icon-strokefill{
+        color: var(--Favorite-Icon-StrokeFill);
+    }
+
+    .favorite-icon-selectedfill{
+        color: var(--Favorite-Icon-SelectedFill);
+    }
+
+    .more-option-panel{        
+        background-color: var(--ListView-Filter-Panel-Bg);
+        transition: background-color 0.3s ease;
+        border: var(--ListView-Filter-Panel-Border);
+        border-radius: 8px;       
+    }
+
+    .theme-divider{
+        background-color: var(--Theme-Item-Bg-Hover) /* From the UpperPart Css */
+    }
+
 }
 
 @layer components {

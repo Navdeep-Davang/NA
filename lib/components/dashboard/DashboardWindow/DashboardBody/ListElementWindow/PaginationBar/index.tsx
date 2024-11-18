@@ -50,11 +50,11 @@ export function PaginationBar() {
 
   return (
     <Pagination>
-      <PaginationContent className="flex justify-center items-center space-x-2 text-white">
+      <PaginationContent className="flex justify-center items-center space-x-2">
         <PaginationItem>
           {startPage > 1 && (
             <div 
-              className="p-1 hover:bg-white/20 rounded-lg cursor-pointer"
+              className="p-1 hover:pagination-button-hover rounded-lg cursor-pointer"
               onClick={handlePreviousRange}
             >
               <ChevronsLeft width={24} />
@@ -64,7 +64,7 @@ export function PaginationBar() {
         <PaginationItem>
           {currentPage > 1 && (
             <div 
-              className="p-1 hover:bg-white/20 rounded-lg cursor-pointer"
+              className="p-1 hover:pagination-button-hover rounded-lg cursor-pointer"
               onClick={() => handlePageChange(currentPage - 1)}
             >
               <ChevronLeft width={24} />
@@ -77,7 +77,7 @@ export function PaginationBar() {
           <PaginationItem key={page}>
             <button
               onClick={() => handlePageChange(page)}
-              className={`px-2 py-1 rounded ${page === currentPage ? "bg-white text-black" : "hover:bg-white/20 hover:text-white"}`}
+              className={`px-2 py-1 rounded ${page === currentPage ? "pagination-button-active" : "hover:pagination-button-hover"}`}
               aria-current={page === currentPage ? "page" : undefined}
             >
               {page}
@@ -88,7 +88,7 @@ export function PaginationBar() {
         <PaginationItem>
           {currentPage < totalPages && (
             <div 
-              className="p-1 hover:bg-white/20 rounded-lg cursor-pointer"
+              className="p-1 hover:pagination-button-hover rounded-lg cursor-pointer"
               onClick={() => handlePageChange(currentPage + 1)}
             >
               <ChevronRight width={24} />
@@ -98,7 +98,7 @@ export function PaginationBar() {
         <PaginationItem>
           {endPage < totalPages && (
             <div 
-              className="p-1 hover:bg-white/20 rounded-lg cursor-pointer"
+              className="p-1 hover:pagination-button-hover rounded-lg cursor-pointer"
               onClick={handleNextRange}
             >
               <ChevronsRight width={24} />

@@ -40,7 +40,7 @@ const ListView: React.FC<ListViewProps>= ({ showNoteSkeleton, showFolderSkeleton
                 </TableHeader>
                 <TableBody>
                   {notesData.map((note, index) => (
-                    <TableRow key={index} className=" hover:bg-white/10  border-none rounded-lg overflow-hidden transition duration-300 ease-in-out">
+                    <TableRow key={index} className=" hover:listview-list-hover  border-none rounded-lg overflow-hidden transition duration-300 ease-in-out">
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <img className="w-24 h-20 rounded-lg" src={note.imageUrl} alt={note.title} />
@@ -52,7 +52,7 @@ const ListView: React.FC<ListViewProps>= ({ showNoteSkeleton, showFolderSkeleton
                       <TableCell>
                       <div className="flex gap-2"> 
       
-                      <div className="p-2 rounded-lg cursor-pointer hover:bg-[#ffffff]/20 hover:transition-colors">
+                      <div className="p-2 rounded-lg cursor-pointer hover:listview-list-icon-hover hover:transition-colors">
                           <FilePenLine
                             width="24"
                             height="24"
@@ -90,7 +90,7 @@ const ListView: React.FC<ListViewProps>= ({ showNoteSkeleton, showFolderSkeleton
                 <TableBody>
                   {foldersData.map((folder, index) => (
                     
-                    <TableRow key={index} className=" hover:bg-white/10  border-none rounded-lg overflow-hidden transition duration-300 ease-in-out  ">
+                    <TableRow key={index} className=" hover:listview-list-hover  border-none rounded-lg overflow-hidden transition duration-300 ease-in-out  ">
                       <TableCell className="p-5">
                         <div className="flex items-center gap-2">
                           <div className="FolderIcon w-16 h-12 p-2 flex-col justify-start items-start gap-2.5 inline-flex">
@@ -106,12 +106,15 @@ const ListView: React.FC<ListViewProps>= ({ showNoteSkeleton, showFolderSkeleton
                       <TableCell className="list-item-text text-lg font-medium">{folder.lastUpdated}</TableCell>
                       <TableCell>
                         <div className="flex gap-2">
-                          <FavoriteToggler
-                            category={folder.category} // Pass the category to the toggler
-                            // onToggle={() => handleToggle(folder.name)} // Pass the toggle function
-                          />
 
-                          <div className="p-2 rounded-lg hover:bg-[#ffffff]/20 cursor-pointer">
+                          <div className="p-2 rounded-lg hover:listview-list-icon-hover cursor-pointer">
+                            <FavoriteToggler
+                              category={folder.category} // Pass the category to the toggler
+                              // onToggle={() => handleToggle(folder.name)} // Pass the toggle function
+                            />
+                          </div>                          
+
+                          <div className="p-2 rounded-lg hover:listview-list-icon-hover cursor-pointer">
                             <FilePenLine
                               width="24"
                               height="24"

@@ -10,7 +10,7 @@ interface MoreOptionPanelProps {
   }
   
 export const MoreOptionPanel = ({ type }: MoreOptionPanelProps) => (
-  <div className="popup-note h-full rounded-lg flex flex-col gap-0">
+  <div className=" h-full rounded-lg flex flex-col gap-0">
     <OptionItem icon={<Edit className="w-5 h-5" />} label="Rename" />
     <OptionItem icon={<Info className="w-5 h-5" />} label="View Info" />
     
@@ -20,8 +20,7 @@ export const MoreOptionPanel = ({ type }: MoreOptionPanelProps) => (
 
     {type === 'folder' && (
       <OptionItem icon={ <FavoriteIcon
-        variant= "remove" 
-        strokeFill = "Gray"
+        variant= "remove"         
         width="24"  
         height="24"     
         className="list-item-text"  
@@ -31,7 +30,7 @@ export const MoreOptionPanel = ({ type }: MoreOptionPanelProps) => (
     )}
     
     {/* Divider */}
-    <div className="self-stretch h-px bg-[#cac4d0]/50" />
+    <div className="theme-divider self-stretch mt-1 h-px" />
 
     <OptionItem icon={<Trash className="w-5 h-5" />} label="Delete" isDestructive className="mt-2" />
   </div>
@@ -45,7 +44,7 @@ const OptionItem: React.FC<{ icon: React.ReactNode; label: string; isDestructive
     className = ''
   }) => {
     return isDestructive ? (
-      <div className={`w-full h-auto flex justify-center ${className}`}>
+      <div className={`w-full  h-auto flex justify-center ${className}`}>
             <Button
                 variant="destructive"
                 className="flex items-centerp-2 px-4 gap-3 h-auto w-full justify-center"
@@ -57,7 +56,7 @@ const OptionItem: React.FC<{ icon: React.ReactNode; label: string; isDestructive
 
       
     ) : (
-      <div className="popover-option flex items-center gap-2 p-2 cursor-pointer hover:bg-[#333]/10 rounded">
+      <div className="hover:memu-item-hover flex items-center gap-2 p-2 cursor-pointer rounded">
         <div className="icon-container">{icon}</div>
         <div className="text-base font-normal">{label}</div>
       </div>

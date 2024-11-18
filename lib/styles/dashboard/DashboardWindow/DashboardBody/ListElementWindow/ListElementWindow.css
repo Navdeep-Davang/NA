@@ -20,11 +20,17 @@
         --ListView-Filter-Inactive: rgba(0, 0, 0, 0.05);
         --ListView-Filter-Icon-Inactive: rgba(0, 0, 0, 0.3);
         --ListView-Filter-Panel-Bg: rgba(255, 255, 255, 1);
+        --ListView-Filter-Panel-Border: 1px solid rgba(0, 0, 0, 0.1);
         --ListView-Filter-Item: rgba(0, 0, 0, 0.5);
         --ListView-Filter-Item-Hover: rgba(0, 0, 0, 0.05);
         
-        
-        
+        --ListView-ListItem-Hover: rgba(0, 0, 0, 0.05);
+        --ListView-ListItem-Icon-Hover: rgba(0, 0, 0, 0.07);
+     
+        --Pagination-Item-Active: #ffffff;
+        --Pagination-Item-Bg-Active: #000000;
+
+
     }
 
     .dark {
@@ -44,11 +50,16 @@
         --ListView-Filter-Inactive: rgba(255, 255, 255, 0.1);
         --ListView-Filter-Icon-Inactive: rgba(255, 255, 255, 0.5);
         --ListView-Filter-Panel-Bg: rgb(40, 40, 40);
+        --ListView-Filter-Panel-Border: 1px solid rgba(255, 255, 255, 0.2);
         --ListView-Filter-Item: rgba(255, 255, 255, 0.5);
         --ListView-Filter-Item-Hover: rgba(255, 255, 255, 0.1);
        
+        --ListView-ListItem-Hover: rgba(255, 255, 255, 0.1);
+        --ListView-ListItem-Icon-Hover: rgba(255, 255, 255, 0.2);
        
-       
+        --Pagination-Item-Active: #000000;
+        --Pagination-Item-Bg-Active: #ffffff;
+
     }
 
     /* The Toggle Tab CSS */
@@ -105,6 +116,8 @@
     .listview-filter-panel {
         background-color: var(--ListView-Filter-Panel-Bg);
         transition: background-color 0.3s ease;
+        border: var(--ListView-Filter-Panel-Border);
+        border-radius: 8px;
     }
 
     .listview-filter-hover {
@@ -140,8 +153,32 @@
     }
 
 
+    /* __________________________________________________________________________________________________________ */
 
+    /* The Content View CSS */
 
+    .listview-list-hover{
+        background-color: var(--ListView-ListItem-Hover);
+    }
+
+    .listview-list-icon-hover{
+        background-color: var(--ListView-ListItem-Icon-Hover);
+    }
+
+    /* __________________________________________________________________________________________________________ */
+
+    /* The Pagination View CSS */
+
+    .pagination-button-active {
+        background-color: var(--Pagination-Item-Bg-Active);
+        color: var(--Pagination-Item-Active);
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination-button-hover {
+        background-color: var(--Theme-Item-Bg-Hover);
+        transition: background-color 0.3s ease;
+    }
 
 }
 

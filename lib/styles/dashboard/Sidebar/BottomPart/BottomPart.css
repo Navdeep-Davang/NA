@@ -9,7 +9,7 @@
         --Theme-Bottompart-Background: #FFFFFF; /* Upper part background */
         --Theme-Bottompart-Title-Text: var(--Theme-Upperpart-Title-Text); /* Upper part title text color */
                
-        --Theme-Bottompart-Button-Hover: var(--Theme-Item-bg-Hover);
+        --Theme-Bottompart-Button-Hover: var(--Theme-Item-Bg-Hover);
        
     }
 
@@ -18,7 +18,7 @@
         --Theme-Bottompart-Background: #191919; /* Upper part background */
         --Theme-Bottompart-Title-Text: #D1D5DB; /* Upper part title text color */
                 
-        --Theme-Bottompart-Button-Hover: var(--Theme-Item-bg-Hover);
+        --Theme-Bottompart-Button-Hover: var(--Theme-Item-Bg-Hover);
         
     }
 
