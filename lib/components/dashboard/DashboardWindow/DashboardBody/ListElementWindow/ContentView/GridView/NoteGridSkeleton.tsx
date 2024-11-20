@@ -2,15 +2,22 @@
 
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { number } from "zod";
 
 interface NoteGridSkeletonProps {
-  columnCount: number;
+  columnCount?: number;
+  arraycount? : number
 }
 
-const NoteGridSkeleton: React.FC<NoteGridSkeletonProps> = ({ columnCount }) => {
+const NoteGridSkeleton: React.FC<NoteGridSkeletonProps> = ({ columnCount , arraycount =10 }) => {
   return (
-    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-${columnCount} gap-8`}>
-      {[...Array(10)].map((_, index) => (
+    <div              
+      className="grid gap-6"
+      style={{
+        gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`,
+      }}
+    >
+      {[...Array(arraycount)].map((_, index) => (
         <Card
           key={index}
           className="border-transparent p-4 theme-skeleton-bg  rounded-lg flex flex-col justify-start items-center gap-4"

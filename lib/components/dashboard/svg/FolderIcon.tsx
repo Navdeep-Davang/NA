@@ -5,27 +5,45 @@ import React from 'react';
 interface FolderIconProps {
     width?: number | string;
     height?: number | string;
+    className?: string;
+    paddingPercentage?: number;
   }
   
-const FolderIcon: React.FC<FolderIconProps> = ({ width, height }) => {
+const FolderIcon: React.FC<FolderIconProps> = ({ width, height, className, paddingPercentage = 0  }) => {
     const aspectRatio = 9 / 7;
   
   // Calculate width or height if only one is provided
-    const computedWidth = 
-    typeof width === "number" ? width : 
-    (typeof height === "number" ? height * aspectRatio : "100%");
+  const computedWidth =
+  typeof width === "number"
+    ? width
+    : typeof height === "number"
+    ? height * aspectRatio
+    : width; // Pass through strings directly (e.g., "75%")
 
-    const computedHeight = 
-    typeof height === "number" ? height : 
-    (typeof width === "number" ? width / aspectRatio : "100%");
+  const computedHeight =
+    typeof height === "number"
+      ? height
+      : typeof width === "number"
+      ? width / aspectRatio
+      : height; // Pass through strings directly (e.g., "auto")
+
+
+  const dynamicPadding = typeof computedWidth === "string" && computedWidth.includes("%")
+      ? `calc(${computedWidth} * ${paddingPercentage / 100})`
+      : `${(computedWidth as number) * (paddingPercentage / 100)}px`;
 
   return (
     <svg
       width={computedWidth}
       height={computedHeight}
       viewBox="0 0 45 35"
-      fill="none"
+      fill="none"     
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={{
+        paddingTop: dynamicPadding,
+        paddingBottom: dynamicPadding,
+      }}
     >
         <path d="M25.0836 3.5164C25.5051 2.87939 25.9168 2.23734 26.3481 1.60792C26.5868 1.25908 26.8353 0.910247 27.113 0.594273C27.4395 0.222688 27.8951 0.0482708 28.3604 0.045743C31.357 0.0154096 34.3511 0.00277064 37.3477 0.00024285C39.097 -0.00228494 40.8462 0.0154096 42.5954 0.0305763C43.453 0.0381597 44.1449 0.39205 44.6175 1.14786C44.7296 1.3248 44.7832 1.54219 44.8636 1.73936C44.9074 1.88092 44.9488 2.02247 44.9927 2.16403C44.9951 9.257 44.9976 16.35 45 23.443C45 26.5243 45 29.6032 44.9951 32.6845C44.9951 33.4302 44.7442 34.0951 44.1546 34.5324C43.8525 34.7573 43.453 34.8761 43.0802 34.952C42.727 35.0228 42.3494 34.9722 41.9815 34.9722C30.7016 34.9823 19.4218 34.9949 8.14195 35C6.13448 35 4.12457 34.9848 2.1171 34.9671C1.63472 34.9621 1.23518 34.7927 0.850252 34.4489C0.538412 34.1709 0.267988 33.8954 0.141303 33.4985C0.0730876 33.2887 0.05847 33.0561 0.0365438 32.8337C0.01949 32.6643 0.0316713 32.4924 0.0316713 32.3205C0.01949 27.5304 0 22.7377 0 17.9475C0 14.9243 0.029235 11.9036 0.0438525 8.88036C0.0462888 8.32931 0.0438525 7.77825 0.0438525 7.22719C0.0901413 7.17663 0.158356 7.13366 0.182719 7.07299C0.348384 6.65591 0.606626 6.32982 0.981809 6.0821C1.51048 5.73327 2.08787 5.7181 2.67988 5.74085C2.82605 5.74085 2.97223 5.74591 3.12084 5.74338C9.6037 5.72568 16.0866 5.70546 22.567 5.70041C23.0616 5.70041 23.4757 5.56391 23.846 5.24793C23.9654 5.14682 24.1091 5.0634 24.192 4.93701C24.4989 4.4719 24.7864 3.99162 25.0836 3.5164Z" fill="#F4D345"/>
         <path d="M25.0834 3.51615C24.7886 3.99137 24.5012 4.47165 24.1918 4.93676C24.1089 5.06315 23.9652 5.1491 23.8458 5.24768C23.4731 5.56366 23.0589 5.70016 22.5668 5.70016C16.0839 5.70521 9.60104 5.72796 3.12061 5.74313C2.97443 5.74313 2.82826 5.74313 2.67965 5.7406C2.67965 5.45496 2.67234 5.16932 2.67721 4.88621C2.68696 3.9762 3.24729 3.40492 4.13165 3.40492C7.367 3.40492 10.6023 3.40492 13.8377 3.40492C15.5236 3.40492 17.2095 3.40492 18.8978 3.39987C18.9952 3.39987 19.0902 3.33162 19.1877 3.2937C19.3655 3.50604 19.5994 3.46559 19.8357 3.46306C21.4534 3.45548 23.0735 3.45801 24.6912 3.46054C24.8227 3.46054 24.9543 3.49592 25.0834 3.51615Z" fill="#E8E3B9"/>

@@ -10,7 +10,12 @@ interface FolderGridSkeletonProps {
 
 const FolderGridSkeleton: React.FC<FolderGridSkeletonProps> = ({ columnCount }) => {
   return (
-    <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-${columnCount} gap-8`}>
+    <div              
+      className="grid gap-6"
+      style={{
+        gridTemplateColumns: `repeat(${columnCount}, minmax(0, 1fr))`,
+      }}
+    >
       {[...Array(10)].map((_, index) => (
         <Card
           key={index}

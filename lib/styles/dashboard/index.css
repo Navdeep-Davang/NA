@@ -4,7 +4,6 @@
 @import './Sidebar/Sidebar.css';
 @import './Sidebar/UpperPart/UpperPart.css';
 @import './Sidebar/BottomPart/BottomPart.css';
-@import './DashboardWindow/DashboardWindow.css';
 @import './DashboardWindow/DashboardHeader/DashboardHeader.css';
 @import './DashboardWindow/DashboardBody/DashboardBody.css';
 @import './DashboardWindow/DashboardBody/CreateElement/CreateElement.css';

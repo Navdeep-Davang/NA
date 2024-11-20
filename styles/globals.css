@@ -1,8 +1,10 @@
+/* styles\globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "@/lib/styles/index.css";
+@import '../lib/styles/index.css';
 
 body {
   font-family: Arial, Helvetica, sans-serif;

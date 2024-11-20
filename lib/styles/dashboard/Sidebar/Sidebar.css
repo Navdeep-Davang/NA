@@ -4,15 +4,6 @@
 @tailwind utilities;
 
 
-@layer base {
-    :root {
-        --Theme-Background: #FFFFFF; 
-    }
-  
-    .dark {
-        --Theme-Background: #191919; 
-    }
-}
 
 .sidebar {
     display: flex;

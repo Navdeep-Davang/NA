@@ -165,7 +165,9 @@
         background-color: var(--ListView-ListItem-Icon-Hover);
     }
 
-    
+    .listview-folder-icon-bg{
+        background-color: var(--ListView-Tab-Background);
+    }
 
 
 

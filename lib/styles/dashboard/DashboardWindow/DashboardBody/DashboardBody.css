@@ -7,6 +7,7 @@
     :root {
         /* Light Theme Variables */
         --Theme-Background: #F7F9FB; /* Background color */
+        --Theme-Dashboard-Window-BG: #f3f3f3;
         --Theme-Skeleton-Bg: rgba(0, 0, 0, 0.1); /* bg-dark/10 */
         --Theme-Skeleton-Text: rgba(0, 0, 0, 0.2); /* bg-dark/20 */
         --Theme-Skeleton-Border: rgba(0, 0, 0, 0.5);
@@ -40,6 +41,7 @@
     .dark {
         /* Dark Theme Variables */
         --Theme-Background: #2d3136; /* Background color */
+        --Theme-Dashboard-Window-BG: #2e2e2e;
         --Theme-Skeleton-Bg: rgba(255, 255, 255, 0.1); /* bg-white/10 */
         --Theme-Skeleton-Text: rgba(255, 255, 255, 0.2); /* bg-white/20 */
         --Theme-Skeleton-Border: rgba(255, 255, 255, 0.4);
@@ -76,6 +78,10 @@
         background-color: var(--Theme-Background);
     }
 
+    .theme-dashboard-window {
+        background-color: var(--Theme-Dashboard-Window-BG);
+    }
+ 
     .theme-skeleton-bg {
         background-color: var(--Theme-Skeleton-Bg);
       }

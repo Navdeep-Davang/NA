@@ -8,7 +8,8 @@
         /* Light Theme Variables */
         --Theme-Bottompart-Background: #FFFFFF; /* Bottom part background */
         --Theme-Header-Background: #F9FAFB; /* Header background color */
-        --Theme-Header-Border: #E5E7EB; /* Light border color */
+        --Theme-Header-Glassblur: rgba(255, 255, 255, 0.7);
+        --Theme-Header-Border: #E1E4E8; /* Light border color */
         --Theme-Header-Nav-Icon: #111827; /* Icon color */
         --Theme-Header-Nav-Icon-Hover: rgba(25, 35, 48, 0.1);
     }
@@ -17,7 +18,8 @@
         /* Dark Theme Variables */
         --Theme-Bottompart-Background: #1F2937; /* Bottom part background */
         --Theme-Header-Background: #111827; /* Header background color */
-        --Theme-Header-Border: #374151; /* Dark border color */
+        --Theme-Header-Glassblur: rgba(31, 41, 55, 0.7);
+        --Theme-Header-Border: #6b6b6b; /* Dark border color */
         --Theme-Header-Nav-Icon: #F9FAFB; /* Icon color */
         --Theme-Header-Nav-Icon-Hover: rgba(255, 255, 255, 0.2);
     }
@@ -25,6 +27,11 @@
     /* Utility classes to use theme variables with Tailwind */
     .theme-header-background {
         background-color: var(--Theme-Header-Background);
+    }
+    
+    .theme-header-glassblur {
+        backdrop-filter: blur(16px); /* Apply blur effect */
+        background-color: var(--Theme-Header-Glassblur); /* Dynamic glassblur background */
     }
     
     .theme-header-border {

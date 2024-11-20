@@ -65,7 +65,7 @@ const Dashboard = () => {
 
   return (
     <SidebarProvider setIsSidebarCollapsed={setIsSidebarCollapsed} setIsMobileDevice={setIsMobileDevice} >
-      <div className="flex h-screen w-full">
+      <div className="flex h-screen  w-full">
         {/* Sidebar with dynamic width */}
         <div
           ref={sidebarRef}
@@ -77,7 +77,7 @@ const Dashboard = () => {
           <Sidebar 
             collapsible="offcanvas"
             isResizing={isResizing} // Pass the isResizing prop
-            className={`${isResizing ? 'transition-none' : 'transition-all duration-200 ease-in-out'} no-user-select`}
+            className={`${isResizing ? 'transition-none' : 'transition-all duration-200 ease-in-out'} no-user-select border-transparent`}
           >
             <div className="flex-grow">
               <UpperPart {...mydata} />
