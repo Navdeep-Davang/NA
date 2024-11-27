@@ -12,16 +12,16 @@ const FolderListSkeleton: React.FC = () => {
             <Skeleton className="w-32 h-5 theme-skeleton-text" /> {/* Folder Name skeleton */}
           </TableCell>
           <TableCell className="list-table-header-text">
-            <Skeleton className="w-20 h-5 theme-skeleton-text" /> {/* Files skeleton */}
+            <Skeleton className="w-20 h-5 theme-skeleton-text hidden sm:table-cell text-right lg:text-left" /> {/* Files skeleton */}
           </TableCell>
           <TableCell className="list-table-header-text">
-            <Skeleton className="w-24 h-5 theme-skeleton-text" /> {/* Date Created skeleton */}
+            <Skeleton className="w-24 h-5 theme-skeleton-text hidden lg:table-cell" /> {/* Date Created skeleton */}
           </TableCell>
           <TableCell className="list-table-header-text">
-            <Skeleton className="w-24 h-5 theme-skeleton-text" /> {/* Last Updated skeleton */}
+            <Skeleton className="w-24 h-5 theme-skeleton-text hidden lg:table-cell" /> {/* Last Updated skeleton */}
           </TableCell>
           <TableCell className="list-table-header-text">
-            <Skeleton className="w-16 h-5 theme-skeleton-text" /> {/* Actions skeleton */}
+            <Skeleton className="w-16 h-5 theme-skeleton-text text-right lg:text-left" /> {/* Actions skeleton */}
           </TableCell>
         </TableRow>
       </TableHeader>
@@ -29,7 +29,7 @@ const FolderListSkeleton: React.FC = () => {
         {rows.map((_, index) => (
           <TableRow
             key={index}
-            className="hover:bg-white/10 border-none rounded-lg overflow-hidden transition duration-300 ease-in-out"
+            className="hover:theme-skeleton-bg border-none rounded-lg overflow-hidden transition duration-300 ease-in-out"
           >
             <TableCell className="p-5">
               <div className="flex items-center gap-2">
@@ -40,16 +40,16 @@ const FolderListSkeleton: React.FC = () => {
               </div>
             </TableCell>
             <TableCell>
-              <Skeleton className="w-20 h-6 theme-skeleton-text" /> {/* File Count skeleton */}
+              <Skeleton className="w-20 h-6 theme-skeleton-text hidden sm:table-cell text-end lg:text-start" /> {/* File Count skeleton */}
             </TableCell>
             <TableCell>
-              <Skeleton className="w-28 h-6 theme-skeleton-text" /> {/* Date Created skeleton */}
+              <Skeleton className="w-28 h-6 theme-skeleton-text hidden lg:table-cell" /> {/* Date Created skeleton */}
             </TableCell>
             <TableCell>
-              <Skeleton className="w-32 h-6 theme-skeleton-text" /> {/* Last Updated skeleton */}
+              <Skeleton className="w-32 h-6 theme-skeleton-text hidden lg:table-cell" /> {/* Last Updated skeleton */}
             </TableCell>
             <TableCell>
-              <div className="flex gap-2">
+              <div className="flex gap-2 justify-end lg:justify-start">
                 <Skeleton className="w-6 h-6 rounded-md theme-skeleton-text" /> {/* Action icon skeleton */}
                 <Skeleton className="w-6 h-6 rounded-md theme-skeleton-text" /> {/* Additional action icon skeleton (if needed) */}
               </div>

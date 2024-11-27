@@ -9,9 +9,9 @@ const NoteListSkeleton: React.FC = () => {
       <TableHeader>
         <TableRow>
             <TableCell><Skeleton className="w-32 h-5 theme-skeleton-text" /></TableCell> {/* Note Title skeleton */}
-            <TableCell><Skeleton className="w-24 h-5 theme-skeleton-text" /></TableCell> {/* Date Created skeleton */}
-            <TableCell><Skeleton className="w-24 h-5 theme-skeleton-text" /></TableCell> {/* Last Updated skeleton */}
-            <TableCell><Skeleton className="w-16 h-5 theme-skeleton-text" /></TableCell> {/* Actions skeleton */}
+            <TableCell ><Skeleton className="w-24 h-5 theme-skeleton-text hidden md:table-cell " /></TableCell> {/* Date Created skeleton */}
+            <TableCell ><Skeleton className="w-24 h-5 theme-skeleton-text hidden md:table-cell" /></TableCell> {/* Last Updated skeleton */}
+            <TableCell className="flex justify-end sm:justify-start"><Skeleton className="w-16 h-5 theme-skeleton-text " /></TableCell> {/* Actions skeleton */}
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -22,18 +22,18 @@ const NoteListSkeleton: React.FC = () => {
           >
             <TableCell>
               <div className="flex items-center gap-2">
-                <Skeleton className="w-24 h-20 rounded-lg theme-skeleton-text" /> {/* Image skeleton */}
+                <Skeleton className="w-24 h-20 hidden sm:block rounded-lg theme-skeleton-text" /> {/* Image skeleton */}
                 <Skeleton className="w-40 h-6 theme-skeleton-text" /> {/* Title skeleton */}
               </div>
             </TableCell>
             <TableCell>
-              <Skeleton className="w-32 h-6 theme-skeleton-text" /> {/* Date Created skeleton */}
+              <Skeleton className="w-32 h-6 theme-skeleton-text hidden md:table-cell" /> {/* Date Created skeleton */}
             </TableCell>
             <TableCell>
-              <Skeleton className="w-32 h-6 theme-skeleton-text" /> {/* Last Updated skeleton */}
+              <Skeleton className="w-32 h-6 theme-skeleton-text hidden md:table-cell" /> {/* Last Updated skeleton */}
             </TableCell>
             <TableCell>
-              <div className="flex gap-2">
+              <div className="flex gap-2 justify-end sm:justify-center">
                 <Skeleton className="w-6 h-6 rounded-md theme-skeleton-text" /> {/* Action icon skeleton */}
               </div>
             </TableCell>

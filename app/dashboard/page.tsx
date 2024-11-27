@@ -2,12 +2,12 @@
 
 import React, { Suspense } from 'react';
 import Dashboard from '@/lib/components/dashboard'; // Adjust the path as needed
-import DashboardLoading from './loading';
+import { DashboardSkeleton } from '@/lib/components/dashboard/Skeleton';
 
 
 const DashboardPage = () => {
     return (
-        <Suspense fallback={<DashboardLoading />}>
+        <Suspense fallback={<DashboardSkeleton />}>
             <Dashboard />
         </Suspense>
     );

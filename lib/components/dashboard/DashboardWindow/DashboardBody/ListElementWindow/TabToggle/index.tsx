@@ -21,7 +21,7 @@ const TabToggle: React.FC = () => {
 
   return (
     <div className="flex flex-col justify-center items-center gap-2.5">
-      <div className="w-96 p-2 listview-tab-wrapper rounded-lg flex justify-center items-center gap-4 relative">
+      <div className="w-64 sm:w-96 p-2 listview-tab-wrapper rounded-lg flex justify-center items-center gap-4 relative">
         <motion.div 
           className="listview-tab-bubble border absolute top-0 w-1/2 h-full rounded-lg" 
           layoutId="bubble" 
