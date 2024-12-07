@@ -4,13 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import useListStore from "@/lib/storage/state/useListStore";
 import NoteListSkeleton from "../ListView/NoteListSkeleton";
 import { History, MoreVertical } from "lucide-react";
-import FolderIcon from "@/lib/components/dashboard/svg/FolderIcon";
+import FolderIcon from "@/lib/components/common/svg/FolderIcon";
 import { useEffect, useRef, useState } from "react";
 import NoteGridSkeleton from "./NoteGridSkeleton";
 import FolderGridSkeleton from "./FolderGridskeleton";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { MoreIcon } from "@/lib/components/dashboard/svg";
-import { MoreOptionPanel } from "@/lib/components/dashboard/Sidebar/MoreOptionPanel";
+import { MoreIcon } from "@/lib/components/common/svg";
+import { MoreOptionPanel } from "@/lib/components/common/Sidebar/MoreOptionPanel";
 
 
 // Define the GridViewProps interface

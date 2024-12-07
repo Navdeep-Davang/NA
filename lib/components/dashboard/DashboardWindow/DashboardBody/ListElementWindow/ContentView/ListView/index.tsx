@@ -2,7 +2,7 @@
 
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import useListStore from "@/lib/storage/state/useListStore";
-import FolderIcon from "@/lib/components/dashboard/svg/FolderIcon";
+import FolderIcon from "@/lib/components/common/svg/FolderIcon";
 import FavoriteToggler from "./FavoriteToggler";
 import { FilePenLine } from "lucide-react";
 import NoteListSkeleton from "./NoteListSkeleton";

@@ -5,7 +5,7 @@ import { recentNotesData } from '@/lib/storage/data/dashboard/DashboardWindow/Da
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import NoteGridSkeleton from '../ListElementWindow/ContentView/GridView/NoteGridSkeleton';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { MoreOptionPanel } from '../../../Sidebar/MoreOptionPanel';
+import { MoreOptionPanel } from '../../../../common/Sidebar/MoreOptionPanel';
 
 const RecentElement = () => {
     const parentRef = useRef<HTMLDivElement>(null); // Ref for the parent container

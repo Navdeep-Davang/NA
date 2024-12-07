@@ -1,6 +1,6 @@
 // lib/components/dashboard/DashboardHeader/index.tsx
 import React from 'react';
-import { CreateFolderIcon, DashboardIcon, FilterSearchIcon, LogoIcon, SidebarToggleIcon, TakeNoteIcon } from '../../svg';
+import { CreateFolderIcon, DashboardIcon, FilterSearchIcon, LogoIcon, SidebarToggleIcon, TakeNoteIcon } from '../../../common/svg';
 import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 import { motion } from "framer-motion";
 import { useTheme } from 'next-themes';

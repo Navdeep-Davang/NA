@@ -1,7 +1,7 @@
 // lib/components/dashboard/DashboardBody/CreateElement/index.tsx
 import { Card } from '@/components/ui/card';
 import React from 'react';
-import {  CreateFolderIcon, TakeNoteIcon } from '../../../svg';
+import {  CreateFolderIcon, TakeNoteIcon } from '../../../../common/svg';
 
 const CreateElement = () => {
     return (

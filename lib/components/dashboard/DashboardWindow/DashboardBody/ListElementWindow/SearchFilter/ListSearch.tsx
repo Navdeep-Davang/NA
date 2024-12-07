@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion'; // Import motion from framer-motion
 import { fetchSearchResult } from '@/lib/services/dashboard';
 import { SearchInput } from './SearchInput';
-import { SearchIcon } from '@/lib/components/dashboard/svg'; // Ensure the path is correct
+import { SearchIcon } from '@/lib/components/common/svg'; // Ensure the path is correct
 import { X } from 'lucide-react';
 import { Folder, Note } from '@/lib/Interface/dashboard/DashboardWindow/DashboardBody/ListElementWindow/SearchFilter/types';
 

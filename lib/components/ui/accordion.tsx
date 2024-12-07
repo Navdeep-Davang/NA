@@ -5,7 +5,7 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion"
 
 
 import { cn } from "@/lib/utils"
-import ArrowFilledIcon from "@/lib/components/dashboard/svg/ArrowFilledIcon"
+import ArrowFilledIcon from "@/lib/components/common/svg/ArrowFilledIcon"
 
 const Accordion = AccordionPrimitive.Root
 

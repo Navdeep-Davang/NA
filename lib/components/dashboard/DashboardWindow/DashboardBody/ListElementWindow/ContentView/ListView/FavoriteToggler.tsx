@@ -1,7 +1,7 @@
 // lib\components\dashboard\DashboardWindow\DashboardBody\ListElementWindow\ContentView\ListView\FavoriteToggler.tsx
 
 
-import { FavoriteIcon } from "@/lib/components/dashboard/svg";
+import { FavoriteIcon } from "@/lib/components/common/svg";
 import React from "react";
 
 interface FavoriteTogglerProps {
