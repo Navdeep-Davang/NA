@@ -1,16 +1,16 @@
-// lib/components/dashboard/DashboardHeader/index.tsx
+// lib/components/dashboard/EditorHeader/index.tsx
 import React from 'react';
-import { DashboardIcon, FilterSearchIcon, LogoIcon, SidebarToggleIcon } from '../../../common/svg';
+import {  DashboardIcon, FilterSearchIcon, LogoIcon, SidebarToggleIcon } from '../../../common/svg';
 import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 import { motion } from "framer-motion";
 import { useTheme } from 'next-themes';
 import { CirclePlus, History, Moon, Sun } from 'lucide-react';
 
 
-// Define the prop type for DashboardHeader
+// Define the prop type for EditorHeader
 
 
-const DashboardHeader = () => {
+const EditorHeader = () => {
     const { state } = useSidebar(); 
     const { theme, setTheme } = useTheme();
 
@@ -82,4 +82,4 @@ const DashboardHeader = () => {
     );
 };
 
-export default DashboardHeader;
+export default EditorHeader;
