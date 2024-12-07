@@ -8,6 +8,9 @@ import FolderIcon from "@/lib/components/dashboard/svg/FolderIcon";
 import { useEffect, useRef, useState } from "react";
 import NoteGridSkeleton from "./NoteGridSkeleton";
 import FolderGridSkeleton from "./FolderGridskeleton";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { MoreIcon } from "@/lib/components/dashboard/svg";
+import { MoreOptionPanel } from "@/lib/components/dashboard/Sidebar/MoreOptionPanel";
 
 
 // Define the GridViewProps interface
@@ -83,9 +86,16 @@ const GridView: React.FC<GridViewProps> = ({ showNoteSkeleton, showFolderSkeleto
                         <History className="w-4 h-4" />
                         <span>{note.lastUpdated}</span>
                       </div>
-                      <div className="p-1 rounded-lg theme-card-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <MoreVertical className="w-6 h-6 theme-card-icon" />
-                      </div>
+                      <Popover>
+                          <PopoverTrigger asChild>
+                            <div className="p-1 rounded-lg theme-card-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <MoreVertical className="w-6 h-6 theme-card-icon" />                                             
+                            </div>
+                          </PopoverTrigger> 
+                          <PopoverContent className="p-2 more-option-panel w-auto border">
+                            <MoreOptionPanel type="note" />
+                          </PopoverContent>
+                      </Popover>
                     </div>
                   </CardContent>
                 </Card>
@@ -122,9 +132,16 @@ const GridView: React.FC<GridViewProps> = ({ showNoteSkeleton, showFolderSkeleto
                       <div className="theme-card-text flex items-center space-x-2">
                         <span>{folder.fileCount}</span> {/* File count displayed here */}
                       </div>
-                      <div className="p-1 rounded-lg theme-card-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <MoreVertical className="w-6 h-6 theme-card-icon" />
-                      </div>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <div className="p-1 rounded-lg theme-card-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <MoreVertical className="w-6 h-6 theme-card-icon" />                                             
+                          </div>
+                        </PopoverTrigger> 
+                        <PopoverContent className="p-2 more-option-panel w-auto border">
+                          <MoreOptionPanel type="folder" isfavorite = {folder.isfavorite} />
+                        </PopoverContent>
+                      </Popover>                     
                     </div>
                   </CardContent>
                 </Card>

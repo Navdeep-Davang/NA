@@ -7,9 +7,10 @@ import { Button } from '@/components/ui/button';
 
 interface MoreOptionPanelProps {
     type: 'note' | 'folder';
+    isfavorite? : boolean
   }
   
-export const MoreOptionPanel = ({ type }: MoreOptionPanelProps) => (
+export const MoreOptionPanel = ({ type, isfavorite }: MoreOptionPanelProps) => (
   <div className=" h-full rounded-lg flex flex-col gap-0">
     <OptionItem icon={<Edit className="w-5 h-5" />} label="Rename" />
     <OptionItem icon={<Info className="w-5 h-5" />} label="View Info" />
@@ -18,15 +19,32 @@ export const MoreOptionPanel = ({ type }: MoreOptionPanelProps) => (
       <OptionItem icon={<FolderPlus className="w-5 h-5" />} label="Move to Folder" />
     )}
 
-    {type === 'folder' && (
-      <OptionItem icon={ <FavoriteIcon
-        variant= "remove"         
-        width="24"  
-        height="24"     
-        className="list-item-text"  
-      />}
-      
-      label="Remove from Favorite" />
+{type === 'folder' && (
+      isfavorite ? (
+        <OptionItem 
+          icon={
+            <FavoriteIcon
+              variant="remove"         
+              width="24"  
+              height="24"     
+              className="list-item-text"  
+            />
+          }
+          label="Remove from Favorite" 
+        />
+      ) : (
+        <OptionItem 
+          icon={
+            <FavoriteIcon
+              variant="add"         
+              width="24"  
+              height="24"     
+              className="list-item-text"  
+            />
+          }
+          label="Add to Favorite" 
+        />
+      )
     )}
     
     {/* Divider */}

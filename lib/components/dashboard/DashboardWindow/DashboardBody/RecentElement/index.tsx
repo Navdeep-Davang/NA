@@ -4,6 +4,8 @@ import { History, MoreVertical } from 'lucide-react';
 import { recentNotesData } from '@/lib/storage/data/dashboard/DashboardWindow/DashboardBody/RecentElement/db';
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import NoteGridSkeleton from '../ListElementWindow/ContentView/GridView/NoteGridSkeleton';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { MoreOptionPanel } from '../../../Sidebar/MoreOptionPanel';
 
 const RecentElement = () => {
     const parentRef = useRef<HTMLDivElement>(null); // Ref for the parent container
@@ -101,9 +103,16 @@ const RecentElement = () => {
                                 <History className="w-4 h-4" />
                                 <span>{note.lastUpdated}</span>
                                 </div>
-                                <div className="p-1 rounded-lg theme-card-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <MoreVertical className="w-6 h-6 theme-card-icon" />
-                                </div>
+                                <Popover>
+                                    <PopoverTrigger asChild>
+                                        <div className="p-1 rounded-lg theme-card-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <MoreVertical className="w-6 h-6 theme-card-icon" />                                             
+                                        </div>
+                                    </PopoverTrigger> 
+                                    <PopoverContent className="p-2 more-option-panel w-auto border">
+                                        <MoreOptionPanel type="note" />
+                                    </PopoverContent>
+                                </Popover>
                             </div>
                             </CardContent>
                         </Card>
@@ -144,9 +153,16 @@ const RecentElement = () => {
                         <History className="w-4 h-4" />
                         <span>{note.lastUpdated}</span>
                         </div>
-                        <div className="p-1 rounded-lg theme-card-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <MoreVertical className="w-6 h-6 theme-card-icon" />
-                        </div>
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <div className="p-1 rounded-lg theme-card-icon-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <MoreVertical className="w-6 h-6 theme-card-icon" />                                             
+                                </div>
+                            </PopoverTrigger> 
+                            <PopoverContent className="p-2 more-option-panel w-auto border">
+                                <MoreOptionPanel type="note" />
+                            </PopoverContent>
+                        </Popover>
                     </div>
                     </CardContent>
                 </Card>

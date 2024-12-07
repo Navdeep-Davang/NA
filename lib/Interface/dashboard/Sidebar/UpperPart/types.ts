@@ -18,6 +18,7 @@ export interface Folder {
     id: number;
     name: string;
     content?: string; 
+    isFavorite: boolean
 }
 
 export interface List {

@@ -18,5 +18,6 @@ export interface Folder {
   lastUpdated: string;
   dateCreated: string;
   category: "Favorite" | "All" ; // Explicitly define the allowed categories
+  isfavorite: boolean
 }
 
