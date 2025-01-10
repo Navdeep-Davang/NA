@@ -23,7 +23,7 @@ const ContentView = () => {
 
     if (loading) return;
     if ((activeTab === "Note" && loadingNotes) || (activeTab === "Folder" && loadingFolders)) return;
-
+    
     const fetchData = async () => {
       try {
         await fetchListContent({ type: activeTab, filter });
@@ -33,7 +33,7 @@ const ContentView = () => {
         // Optionally handle error state here
       }
     };
-
+    console.log("Entering the fetchData service")
     fetchData();
   }, [JSON.stringify(filter), loading, activeTab]);
 
@@ -54,12 +54,14 @@ const ContentView = () => {
     } else {
       folderTimeout = setTimeout(() => setShowFolderSkeleton(false), 500);
     }
-  
+    
+    console.log("contentView Note loading status:", loadingNotes )
+    console.log("contentView Folder loading status:", loadingFolders )
     return () => {
       clearTimeout(noteTimeout);
       clearTimeout(folderTimeout);
     };
-  }, [loadingNotes, loadingFolders]); // Removed loading dependency
+  }, [loadingNotes, loadingFolders]); 
 
   return (
     <div className={`${viewMode === 'Grid' ? 'GridView' : 'ListView'} flex flex-col gap-4`}>

@@ -11,7 +11,7 @@ interface FetchListContentParams {
 
 
 export const fetchListContent = async ({ type, filter }: FetchListContentParams): Promise<Note[] | Folder[]> => {
-  const { loadingNotes, loadingFolders, setLoadingNotes, setLoadingFolders, notesData, foldersData, notesFilter, foldersFilter, setNotesData, setFoldersData, lastNoteFilter, lastFolderFilter, setLastNoteFilter, setLastFolderFilter } = useListStore.getState();
+  const {  setLoadingNotes, setLoadingFolders, notesData, foldersData, notesFilter, foldersFilter, setNotesData, setFoldersData, lastNoteFilter, lastFolderFilter, setLastNoteFilter, setLastFolderFilter } = useListStore.getState();
   
 
 console.log("S1 Current notesFilter:", JSON.stringify(notesFilter));
@@ -22,52 +22,59 @@ console.log("S2 Current foldersFilter:", JSON.stringify(foldersFilter));
   // Loading states for notes and folders
   const setLoading = type === 'Note' ? setLoadingNotes : setLoadingFolders;
   setLoading(true);
+  console.log(`(fetchListContent) ${type} loading state set to true`);
 
-  // Check if the filter has changed
-  const existingData = type === 'Note' ? notesData : foldersData;
-  const lastFilter = type === 'Note' ? lastNoteFilter : lastFolderFilter;
-
-  if (JSON.stringify(filter) === JSON.stringify(lastFilter) && existingData.length > 0) {
-    setLoading(false); // Reset loading state if no fetch is needed
-    console.log("S5.0 Didnt hit the API retuning the existing data");
-    console.log("---------------------------------------------------------------");
-    return existingData;
-  }
-
-  // Make an API request if the filter has changed
   try {
+    // Get the existing data and last filter for the specified type
+    const existingData = type === 'Note' ? notesData : foldersData;
+    const lastFilter = type === 'Note' ? lastNoteFilter : lastFolderFilter;
+
+    console.log(`(fetchListContent) Current ${type} filter:`, JSON.stringify(filter));
+    console.log(`(fetchListContent) Last ${type} filter:`, JSON.stringify(lastFilter));
+
+    // Skip fetch if the filter hasn't changed and we already have data
+    if (JSON.stringify(filter) === JSON.stringify(lastFilter) && existingData.length > 0) {
+      console.log(`(fetchListContent) ${type} filter unchanged, returning existing data.`);
+      setLoading(false); // Stop loading
+      console.log(`(fetchListContent) ${type} loading state set to false`);
+      return existingData;
+    }
+
+    // Perform API request to fetch data
+    console.log(`(fetchListContent) Fetching ${type} data from the server...`);
     const response = await fetch(`/api/list/data`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ type, filter }),
     });
 
-    console.log("S5.1  HIT the API retuning the existing data");
-    console.log("---------------------------------------------------------------");
-
     if (!response.ok) {
       throw new Error(`Failed to fetch ${type} data`);
     }
 
-    const data = await response.json() as Note[] | Folder[];
+    const data = (await response.json()) as Note[] | Folder[];
+    console.log(`(fetchListContent) Successfully fetched ${type} data from the server.`);
 
-    // Store fetched data in Zustand for future use
+    // Update Zustand state with the fetched data
     if (type === 'Note') {
       setNotesData(data as Note[]);
-      
-      setLastNoteFilter(filter as NoteFilterState); // Update the last filter for notes
+      setLastNoteFilter(filter as NoteFilterState);
+      console.log(`(fetchListContent) Notes data and filter updated.`);
     } else {
       setFoldersData(data as Folder[]);
-      
-      setLastFolderFilter(filter as FolderFilterState); // Update the last filter for folders
+      setLastFolderFilter(filter as FolderFilterState);
+      console.log(`(fetchListContent) Folders data and filter updated.`);
     }
 
-    setLoading(false);
+    setLoading(false); // Stop loading
+    console.log(`(fetchListContent) ${type} loading state set to false`);
     return data;
 
   } catch (error) {
-    console.error(`Error fetching ${type} content:`, error);
-    setLoading(false);
+    // Log error and ensure loading state is stopped
+    console.error(`(fetchListContent) Error fetching ${type} data:`, error);
+    setLoading(false); // Stop loading
+    console.log(`(fetchListContent) ${type} loading state set to false (error case).`);
     throw error;
   }
   

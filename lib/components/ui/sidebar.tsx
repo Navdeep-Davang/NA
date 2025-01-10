@@ -3,11 +3,8 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { VariantProps, cva } from "class-variance-authority"
-import { PanelLeft } from "lucide-react"
-
-import { useIsMobile } from "@/hooks/use-mobile"
+import { useIsSmall } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent } from "@/components/ui/sheet"
@@ -32,7 +29,7 @@ type SidebarContext = {
   setOpen: (open: boolean) => void
   openMobile: boolean
   setOpenMobile: (open: boolean) => void
-  isMobile: boolean
+  isSmall: boolean
   toggleSidebar: () => void
   
 }
@@ -56,7 +53,7 @@ const SidebarProvider = React.forwardRef<
     onOpenChange?: (open: boolean) => void
    
     setIsSidebarCollapsed?: (isCollapsed: boolean) => void;
-    setIsMobileDevice?: (isMobile: boolean) => void;
+    setIsSmallDevice?: (isSmall: boolean) => void;
   }
 >(
   (
@@ -68,19 +65,19 @@ const SidebarProvider = React.forwardRef<
       style,
       children,
       setIsSidebarCollapsed,
-      setIsMobileDevice,
+      setIsSmallDevice,
       ...props
     },
     ref
   ) => {
-    const isMobile = useIsMobile()
+    const isSmall = useIsSmall()
     const [openMobile, setOpenMobile] = React.useState(false)
 
     React.useEffect(() => {
-      if (setIsMobileDevice) {
-        setIsMobileDevice(isMobile);
+      if (setIsSmallDevice) {
+        setIsSmallDevice(isSmall);
       }
-    }, [isMobile, setIsMobileDevice]);
+    }, [isSmall, setIsSmallDevice]);
 
     // This is the internal state of the sidebar.
     // We use openProp and setOpenProp for control from outside the component.
@@ -112,10 +109,10 @@ const SidebarProvider = React.forwardRef<
 
     // Helper to toggle the sidebar.
     const toggleSidebar = React.useCallback(() => {
-      return isMobile
+      return isSmall
         ? setOpenMobile((open) => !open)
         : setOpen((open) => !open)
-    }, [isMobile, setOpen, setOpenMobile])
+    }, [isSmall, setOpen, setOpenMobile])
 
     // Adds a keyboard shortcut to toggle the sidebar.
     React.useEffect(() => {
@@ -144,13 +141,13 @@ const SidebarProvider = React.forwardRef<
         state,
         open,
         setOpen,
-        isMobile,
+        isSmall,
         openMobile,
         setOpenMobile,
         toggleSidebar,
                
       }),
-      [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
+      [state, open, setOpen, isSmall, openMobile, setOpenMobile, toggleSidebar]
     )
 
     return (
@@ -201,7 +198,7 @@ const Sidebar = React.forwardRef<
     },
     ref
   ) => {
-    const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+    const { isSmall, state, openMobile, setOpenMobile } = useSidebar()
 
     if (collapsible === "none") {
       return (
@@ -218,13 +215,13 @@ const Sidebar = React.forwardRef<
       )
     }
 
-    if (isMobile) {
+    if (isSmall) {
       return (
         <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
-            className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+            className="w-[--sidebar-width] border-transparent bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -580,7 +577,7 @@ const SidebarMenuButton = React.forwardRef<
     ref
   ) => {
     const Comp = asChild ? Slot : "button"
-    const { isMobile, state } = useSidebar()
+    const { isSmall, state } = useSidebar()
 
     const button = (
       <Comp
@@ -609,7 +606,7 @@ const SidebarMenuButton = React.forwardRef<
         <TooltipContent
           side="right"
           align="center"
-          hidden={state !== "collapsed" || isMobile}
+          hidden={state !== "collapsed" || isSmall}
           {...tooltip}
         />
       </Tooltip>

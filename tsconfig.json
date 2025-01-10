@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "composite": true,  // Keep the root composite setting to enable project references
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

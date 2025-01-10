@@ -89,6 +89,7 @@ export const mockFolders: Folder[] = [
       lastUpdated: '46 min ago',
       dateCreated: '93 min ago',
       category: 'Favorite',
+      isfavorite: true,
     },
     {
       id: '2',
@@ -97,6 +98,7 @@ export const mockFolders: Folder[] = [
       lastUpdated: '23 min ago',
       dateCreated: '54 min ago',
       category: 'All',
+      isfavorite: false,
     },
     {
       id: '3',
@@ -105,6 +107,7 @@ export const mockFolders: Folder[] = [
       lastUpdated: '10 min ago',
       dateCreated: '1 hour ago',
       category: 'Favorite',
+      isfavorite: true,
     },
     {
       id: '4',
@@ -113,6 +116,7 @@ export const mockFolders: Folder[] = [
       lastUpdated: '3 hours ago',
       dateCreated: '1 day ago',
       category: 'All',
+      isfavorite: false,
     },
     {
       id: '5',
@@ -121,6 +125,7 @@ export const mockFolders: Folder[] = [
       lastUpdated: '19 min ago',
       dateCreated: '140 min ago',
       category: 'Favorite',
+      isfavorite: true,
     },
     {
       id: '6',
@@ -129,6 +134,7 @@ export const mockFolders: Folder[] = [
       lastUpdated: '5 days ago',
       dateCreated: '1 week ago',
       category: 'All',
+      isfavorite: false,
     },
     {
       id: '7',
@@ -137,6 +143,7 @@ export const mockFolders: Folder[] = [
       lastUpdated: '2 weeks ago',
       dateCreated: '1 month ago',
       category: 'Favorite',
+      isfavorite: true,
     },
     {
       id: '8',
@@ -145,6 +152,7 @@ export const mockFolders: Folder[] = [
       lastUpdated: '1 month ago',
       dateCreated: '2 months ago',
       category: 'All',
+      isfavorite: false,
     },
     {
       id: '9',
@@ -153,6 +161,7 @@ export const mockFolders: Folder[] = [
       lastUpdated: '2 months ago',
       dateCreated: '3 months ago',
       category: 'Favorite',
+      isfavorite: true,
     },
     {
       id: '10',
@@ -161,6 +170,7 @@ export const mockFolders: Folder[] = [
       lastUpdated: '1 month ago',
       dateCreated: '3 months ago',
       category: 'All',
+      isfavorite: false,
     },
   ];
   

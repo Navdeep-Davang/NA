@@ -42,14 +42,17 @@ const ListView: React.FC<ListViewProps>= ({ showNoteSkeleton, showFolderSkeleton
                   {notesData.map((note, index) => (
                     <TableRow key={index} className=" hover:listview-list-hover  border-none rounded-lg overflow-hidden transition duration-300 ease-in-out">
                       <TableCell>
+                        <>
                         <div className="flex items-center gap-2">
                           <img className="w-24 hidden sm:block h-20 rounded-lg" src={note.imageUrl} alt={note.title} />
                           <span className="list-item-text text-lg font-medium">{note.title}</span>
                         </div>
+                        </>                       
                       </TableCell>
                       <TableCell className="list-item-text text-lg font-medium hidden md:table-cell">{note.dateCreated}</TableCell>
                       <TableCell className="list-item-text text-lg font-medium hidden md:table-cell">{note.lastUpdated}</TableCell>
                       <TableCell>
+                        <>
                         <div className="flex gap-2 justify-end sm:justify-start">      
                           <div className="p-2 rounded-lg cursor-pointer hover:listview-list-icon-hover hover:transition-colors">
                               <FilePenLine
@@ -58,7 +61,8 @@ const ListView: React.FC<ListViewProps>= ({ showNoteSkeleton, showFolderSkeleton
                                 className="list-item-text"
                               />
                           </div>
-                        </div>                        
+                        </div>  
+                        </>                                              
                     </TableCell>
       
                     </TableRow>
@@ -90,6 +94,7 @@ const ListView: React.FC<ListViewProps>= ({ showNoteSkeleton, showFolderSkeleton
                     
                     <TableRow key={index} className=" hover:listview-list-hover  border-none rounded-lg overflow-hidden transition duration-300 ease-in-out  ">
                       <TableCell className="p-5">
+                        <>
                         <div className="flex items-center gap-2">
                           <div className="FolderIcon w-16 h-12 p-2 flex-col justify-start items-start gap-2.5 inline-flex">
                             <div className="Group14 self-stretch grow shrink basis-0 relative">
@@ -98,11 +103,13 @@ const ListView: React.FC<ListViewProps>= ({ showNoteSkeleton, showFolderSkeleton
                           </div>
                           <span className="list-item-text text-lg font-medium">{folder.name}</span>
                         </div>
+                        </>                        
                       </TableCell>
                       <TableCell className="list-item-text text-lg font-medium hidden sm:table-cell text-end lg:text-start">{folder.fileCount}</TableCell>
                       <TableCell className="list-item-text text-lg font-medium hidden lg:table-cell">{folder.dateCreated}</TableCell>
                       <TableCell className="list-item-text text-lg font-medium hidden lg:table-cell">{folder.lastUpdated}</TableCell>
                       <TableCell>
+                        <>
                         <div className="flex gap-2 justify-end lg:justify-start">
 
                           <div className="p-2 rounded-lg hover:listview-list-icon-hover cursor-pointer">
@@ -121,6 +128,7 @@ const ListView: React.FC<ListViewProps>= ({ showNoteSkeleton, showFolderSkeleton
                           </div>
 
                         </div>
+                        </>                        
                       </TableCell>
                     </TableRow>
                   ))}

@@ -67,8 +67,8 @@ const useListStore = create<ListState>()(
       folderPage: 1,
 
       loading: true,
-      loadingNotes: true,
-      loadingFolders: true,
+      loadingNotes: false,
+      loadingFolders: false,
 
       lastNoteFilter: {},  
       lastFolderFilter: {},
@@ -135,6 +135,8 @@ const useListStore = create<ListState>()(
           setTimeout(() => {
             state.loading = false;
             // state.setLoading(false); // Ensure setLoading is used
+            state.setLoadingNotes(false);
+            state.setLoadingFolders(false);
           }, 0);
         }
       }      ,

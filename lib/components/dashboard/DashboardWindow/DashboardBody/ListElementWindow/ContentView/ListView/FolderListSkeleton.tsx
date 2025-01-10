@@ -32,12 +32,14 @@ const FolderListSkeleton: React.FC = () => {
             className="hover:theme-skeleton-bg border-none rounded-lg overflow-hidden transition duration-300 ease-in-out"
           >
             <TableCell className="p-5">
+              <>
               <div className="flex items-center gap-2">
                 <div className="FolderIcon w-16 h-12 p-2 flex-col justify-start items-start gap-2.5 inline-flex">
                   <Skeleton className="w-10 h-10 theme-skeleton-text rounded-lg" /> {/* Folder icon skeleton */}
                 </div>
                 <Skeleton className="w-24 h-6 theme-skeleton-text" /> {/* Folder Name skeleton */}
               </div>
+              </>             
             </TableCell>
             <TableCell>
               <Skeleton className="w-20 h-6 theme-skeleton-text hidden sm:table-cell text-end lg:text-start" /> {/* File Count skeleton */}
@@ -49,10 +51,12 @@ const FolderListSkeleton: React.FC = () => {
               <Skeleton className="w-32 h-6 theme-skeleton-text hidden lg:table-cell" /> {/* Last Updated skeleton */}
             </TableCell>
             <TableCell>
+              <>
               <div className="flex gap-2 justify-end lg:justify-start">
                 <Skeleton className="w-6 h-6 rounded-md theme-skeleton-text" /> {/* Action icon skeleton */}
                 <Skeleton className="w-6 h-6 rounded-md theme-skeleton-text" /> {/* Additional action icon skeleton (if needed) */}
               </div>
+              </>             
             </TableCell>
           </TableRow>
         ))}

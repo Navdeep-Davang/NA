@@ -26,7 +26,7 @@ const RecentElement = () => {
     const updateColumnCount = () => {
         if (parentRef.current) {
           const parentWidth = parentRef.current.offsetWidth;
-          console.log("Parent Container Width:", parentWidth);
+        //   console.log("Parent Container Width:", parentWidth);
       
           if (parentWidth > 0) {
             // First, update column count
