@@ -29,11 +29,11 @@ const ContentView = () => {
         await fetchListContent({ type: activeTab, filter });
         // No need to handle response as it is already done in fetchListContent
       } catch (error) {
-        console.error("(ContentView) Error fetching data:", error);
+        // console.error("(ContentView) Error fetching data:", error);
         // Optionally handle error state here
       }
     };
-    console.log("Entering the fetchData service")
+    
     fetchData();
   }, [JSON.stringify(filter), loading, activeTab]);
 
@@ -55,8 +55,7 @@ const ContentView = () => {
       folderTimeout = setTimeout(() => setShowFolderSkeleton(false), 500);
     }
     
-    console.log("contentView Note loading status:", loadingNotes )
-    console.log("contentView Folder loading status:", loadingFolders )
+   
     return () => {
       clearTimeout(noteTimeout);
       clearTimeout(folderTimeout);

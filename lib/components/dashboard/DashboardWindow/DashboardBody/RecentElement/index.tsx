@@ -122,16 +122,20 @@ const RecentElement = () => {
                 ))}
                 </CarouselContent>
                 <div className="flex justify-center mt-4 space-x-2">
-                {slides.map((_, index) => (
-                    <button
-                    key={index}
-                    className={`w-4 h-4 rounded-full ${selectedTab === index ? 'bg-blue-500' : 'bg-gray-300'}`}
-                    onClick={() => {
-                        setSelectedTab(index);
-                        carouselApi?.scrollTo(index);
-                    }}
-                    />
-                ))}
+                    {slides.map((_, index) => (
+                        <button
+                            key={index}
+                            className={`w-4 h-4 rounded-full 
+                                        ${selectedTab === index ? 
+                                            'bg-gray-300 w-8 h-2' : 
+                                            'border border-white'} 
+                                        transition-all ease-in-out duration-300`}
+                            onClick={() => {
+                                setSelectedTab(index);
+                                carouselApi?.scrollTo(index);
+                            }}
+                        />
+                    ))}
                 </div>
             </Carousel>
             ) : (
